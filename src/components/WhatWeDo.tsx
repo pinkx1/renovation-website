@@ -40,8 +40,8 @@ export default function WhatWeDo() {
                   ))}
               </div>
               <div className="position-relative z-1 what-we-do-play-img">
-                  <div style={{ position: "relative", width: "1630px", overflow: "hidden", borderRadius: "20px", isolation: "isolate", height: "600px" }}><img src="/assets/images/what-we-do-play.jpg" className="ukiyo" alt="what-we-do-play" style={{ display: "block", overflow: "hidden", backfaceVisibility: "hidden", objectFit: "cover", width: "1630px", height: "900px", transform: "translate3d(0px, 75px, 0px)" }} /></div>
-                  <a href="https://youtu.be/78GehqOuq-A&copy;si=WSjyu8eJ-TPiQ5QP" className="video-btn mx-auto position-absolute top-50 start-50 translate-middle" data-fslightbox="2">
+                  <div style={{ position: "relative", width: "1564px", overflow: "hidden", borderRadius: "20px", isolation: "isolate", height: "576px" }}><img src="/assets/images/what-we-do-play.jpg" className="ukiyo" alt="what-we-do-play" style={{ display: "block", overflow: "hidden", backfaceVisibility: "hidden", objectFit: "cover", width: "1564px", height: "864px" }} /></div>
+                  <a href="https://youtu.be/78GehqOuq-A?si=WSjyu8eJ-TPiQ5QP" className="video-btn mx-auto position-absolute top-50 start-50 translate-middle" data-fslightbox="2">
                       <i className="ti ti-player-play-filled"></i>
                   </a>
               </div>

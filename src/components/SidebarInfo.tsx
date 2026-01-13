@@ -33,8 +33,8 @@ export default function SidebarInfo() {
       <div className="offcanvas offcanvas-end sidebar-info bg-gray " tabIndex={-1} id="offcanvasRight">
           <div className="offcanvas-header border-bottom">
               <Link to="/" className="d-block">
-                  <img src="/assets/images/logo.svg" className="main-logo" alt="logo" />
-                  <img src="/assets/images/white-logo.svg" className="white-logo" alt="white-logo" />
+                  <img src="/assets/images/renovia_logo.png" className="main-logo" alt="Renovia logo" />
+                  <img src="/assets/images/renovia_logo.png" className="white-logo" alt="Renovia logo" />
               </Link>
               <button type="button" className="btn-close p-0 mt-0 me-0" data-bs-dismiss="offcanvas" aria-label="Close">
                   <i className="ti ti-x"></i>

@@ -14,7 +14,7 @@ export default function ContactUs() {
                               <p>Home remodeling projects can include additions like extra bedrooms home offices or finished basements. These spaces provide more room for growing families hobbies</p>
                           </div>
                           <div className="contact-us-img">
-                              <div style={{ zIndex: "-1", position: "relative", width: "803px", overflow: "hidden", borderRadius: "20px", isolation: "isolate", height: "468px" }}><img src="/assets/images/contact-us-img.jpg" className="ukiyo z-n1" alt="contact-us-img" style={{ display: "block", overflow: "hidden", backfaceVisibility: "hidden", objectFit: "cover", width: "803px", height: "702px", transform: "translate3d(0px, 58.5px, 0px)" }} /></div>
+                              <div style={{ zIndex: "-1", position: "relative", width: "770px", overflow: "hidden", borderRadius: "20px", isolation: "isolate", height: "448px" }}><img src="/assets/images/contact-us-img.jpg" className="ukiyo z-n1" alt="contact-us-img" style={{ display: "block", overflow: "hidden", backfaceVisibility: "hidden", objectFit: "cover", width: "770px", height: "672px" }} /></div>
                               <div className="d-flex align-items-center contact-info">
                                   <div className="flex-shrink-0">
                                       <div className="icon">
@@ -22,7 +22,7 @@ export default function ContactUs() {
                                       </div>
                                   </div>
                                   <div className="flex-grow-1">
-                                      <h3>Need Gelp&copy;</h3>
+                                      <h3>Need Gelp?</h3>
                                       <p>
                                           Please Call Us: 
                                           <a href="tel:+971(467)3722870">+971(467) 372 2870</a>

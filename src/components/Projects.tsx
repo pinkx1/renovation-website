@@ -18,6 +18,8 @@ const PROJECTS = [
   },
 ];
 
+const PROJECT_SLIDES = [...PROJECTS, ...PROJECTS];
+
 export default function Projects() {
   return (
     <>
@@ -51,8 +53,8 @@ export default function Projects() {
           </div>
           <div className="swiper projects-slide">
             <div className="swiper-wrapper">
-              {PROJECTS.map((project) => (
-                <div className="swiper-slide" key={project.title}>
+              {PROJECT_SLIDES.map((project, index) => (
+                <div className="swiper-slide" key={`${project.title}-${index}`}>
                   <Link
                     to="/single-project"
                     className="projects-single-item-two d-block text-decoration-none"

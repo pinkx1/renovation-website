@@ -21,6 +21,8 @@ const TEAM_MEMBERS = [
   },
 ];
 
+const TEAM_SLIDES = [...TEAM_MEMBERS, ...TEAM_MEMBERS];
+
 const TEAM_SOCIALS = [
   { href: 'https://www.facebook.com/', icon: 'ti ti-brand-facebook', label: 'Facebook' },
   { href: 'https://www.instagram.com/', icon: 'ti ti-brand-instagram', label: 'Instagram' },
@@ -41,8 +43,8 @@ export default function Team() {
           </div>
           <div className="swiper team-slide">
             <div className="swiper-wrapper">
-              {TEAM_MEMBERS.map((member) => (
-                <div className="swiper-slide" key={member.name}>
+              {TEAM_SLIDES.map((member, index) => (
+                <div className="swiper-slide" key={`${member.name}-${index}`}>
                   <div className="team-single-item">
                     <img src={member.photo} alt="team" />
                     <div className="team-content">
@@ -51,7 +53,7 @@ export default function Team() {
                     </div>
                     <ul className="p-0 list-unstyled social-link">
                       {TEAM_SOCIALS.map((social) => (
-                        <li key={`${member.name}-${social.label}`}>
+                        <li key={`${member.name}-${social.label}-${index}`}>
                           <a href={social.href} target="_blank" rel="noreferrer">
                             <i className={social.icon}></i>
                           </a>

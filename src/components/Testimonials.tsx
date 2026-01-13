@@ -10,7 +10,7 @@ const TESTIMONIALS = [
   {
     quote: 'Exceeded Our Expectations',
     text:
-      "From start to finish, the experience was outstanding. The painters were detail-oriented, respectful of our space, and finished earlier than expected. The color consultation helped us choose the perfect tones that completely refreshed our living room. Highly recommend their services!",
+      '"From start to finish, the experience was outstanding. The painters were detail-oriented, respectful of our space, and finished earlier than expected. The color consultation helped us choose the perfect tones that completely refreshed our living room. Highly recommend their services!"',
     name: 'Daniela  Simmons',
     location: 'Chicago, USA',
     avatar: '/assets/images/user6.jpg',
@@ -57,7 +57,7 @@ export default function Testimonials() {
           <div className="row g-4 align-items-xxl-center">
             <div className="col-lg-6">
               <div className="testimonial-img-two position-relative me-xxl-3 h-100">
-                <div style={{ position: 'relative', width: '787px', overflow: 'hidden', borderRadius: '20px', isolation: 'isolate', height: '335px' }}>
+                <div style={{ position: 'relative', width: '754px', overflow: 'hidden', borderRadius: '20px', isolation: 'isolate', height: '321px' }}>
                   <img
                     src="/assets/images/testimonial2.jpg"
                     className="ukiyo h-100"
@@ -67,9 +67,8 @@ export default function Testimonials() {
                       overflow: 'hidden',
                       backfaceVisibility: 'hidden',
                       objectFit: 'cover',
-                      width: '787px',
-                      height: '502.5px',
-                      transform: 'translate3d(0px, 41.875px, 0px)',
+                      width: '754px',
+                      height: '481.5px',
                     }}
                   />
                 </div>

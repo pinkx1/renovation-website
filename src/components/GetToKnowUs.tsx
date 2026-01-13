@@ -48,19 +48,16 @@ const MARQUEE_TEXTS = [
   'Skilled Team',
 ];
 
-const MARQUEE_REPEAT = 3;
-
 export default function GetToKnowUs() {
-  const marqueeItems = Array.from({ length: MARQUEE_REPEAT }, () => MARQUEE_TEXTS).flat();
-  const marqueeNodes = marqueeItems.flatMap((text, index) => {
-    const isLastInGroup = (index + 1) % MARQUEE_TEXTS.length === 0;
+  const marqueeNodes = MARQUEE_TEXTS.flatMap((text, index) => {
+    const isLast = index === MARQUEE_TEXTS.length - 1;
     const nodes = [
       <span className="monogram text-secondary" key={`text-${text}-${index}`}>
         {text}
       </span>,
     ];
 
-    if (!isLastInGroup) {
+    if (!isLast) {
       nodes.push(
         <span className="monogram" key={`img-${text}-${index}`}>
           <img src="/assets/images/monogram-img2.png" alt="monogram-img" />
@@ -110,7 +107,7 @@ export default function GetToKnowUs() {
                   </div>
                   <div className="col-xl-4 col-lg-6">
                       <div className="get-to-know-us-img">
-                          <div style={{ position: "relative", width: "527px", overflow: "hidden", borderRadius: "20px", isolation: "isolate", height: "501px" }}><img src="/assets/images/get-to-know3.jpg" className="ukiyo" alt="get-to-know" style={{ display: "block", overflow: "hidden", backfaceVisibility: "hidden", objectFit: "cover", width: "527px", height: "751.5px", transform: "translate3d(0px, 62.625px, 0px)" }} /></div>
+                          <div style={{ position: "relative", width: "505px", overflow: "hidden", borderRadius: "20px", isolation: "isolate", height: "480px" }}><img src="/assets/images/get-to-know3.jpg" className="ukiyo" alt="get-to-know" style={{ display: "block", overflow: "hidden", backfaceVisibility: "hidden", objectFit: "cover", width: "505px", height: "720px" }} /></div>
                       </div>
                   </div>
                   <div className="col-xl-4">

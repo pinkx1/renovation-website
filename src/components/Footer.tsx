@@ -44,7 +44,7 @@ export default function Footer() {
                   <div className="col-lg-3 col-sm-6" data-cue="slideInUp" data-duration="900" data-show="true" style={{ animationName: "slideInUp", animationDuration: "900ms", animationTimingFunction: "ease", animationDelay: "0ms", animationDirection: "normal", animationFillMode: "both" }}>
                       <div className="footer-single-widget">
                           <Link to="/" className="d-inline-block footer-logo">
-                              <img src="/assets/images/white-logo.svg" alt="white-logo" />
+                              <img src="/assets/images/renovia_logo.png" alt="Renovia logo" />
                           </Link>
                           <p className="text-white">Sign up for our newsletter to latest weekly updates &amp; news</p>
                           <form className="position-relative z-1 mb-4">

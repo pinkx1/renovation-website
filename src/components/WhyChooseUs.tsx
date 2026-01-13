@@ -36,11 +36,11 @@ const PROGRESS_BLOCKS = [
 
 const IMAGE_WRAPPER_STYLE = {
   position: 'relative',
-  width: '406px',
+  width: '390px',
   overflow: 'hidden',
   borderRadius: '15px',
   isolation: 'isolate',
-  height: '438px',
+  height: '420px',
 };
 
 const IMAGE_STYLE = {
@@ -48,9 +48,8 @@ const IMAGE_STYLE = {
   overflow: 'hidden',
   backfaceVisibility: 'hidden',
   objectFit: 'cover',
-  width: '406px',
-  height: '657px',
-  transform: 'translate3d(0px, 54.75px, 0px)',
+  width: '390px',
+  height: '630px',
 };
 
 export default function WhyChooseUs() {
@@ -61,7 +60,7 @@ export default function WhyChooseUs() {
           <div className="mb-50 mt-0 text-center">
             <span className="top-title">why choose us</span>
             <h2 className="main-title mx-auto mw-550">
-              Why Choose Pentu For Your Remodeling Services
+              Why Choose Renovia For Your Remodeling Services
             </h2>
           </div>
           <div className="row g-4 align-items-center">

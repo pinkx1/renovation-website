@@ -2,7 +2,7 @@
 /*------------------------------------------------------------------
 [Master Stylesheet]
 
-Project Name: Pentu - Painting, Building & Renovation HTML Template
+Project Name: Renovia - Painting, Building & Renovation HTML Template
 Version: 1.0
 Last Updated: November 19, 2025
 Author: HiBootstrap
@@ -13912,7 +13912,7 @@ Page-navigation Area Style
   color: #160A05;
   transition: all ease 0.5s;
   position: relative;
-  padding: 38px 0;
+  padding: 25px 0;
   z-index: 1;
   font-size: 16px;
 }
@@ -14052,6 +14052,12 @@ Page-navigation Area Style
 
 .white-logo {
   display: none;
+}
+
+.main-logo,
+.white-logo {
+  height: 40px;
+  width: auto;
 }
 
 .others-options {
@@ -17523,6 +17529,10 @@ Page-navigation Area Style
 
 .footer-single-widget .footer-logo {
   margin-bottom: 30px;
+}
+.footer-single-widget .footer-logo img {
+  height: 56px;
+  width: auto;
 }
 .footer-single-widget .info-list li {
   margin-bottom: 20px;

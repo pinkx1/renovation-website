@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useI18n } from '../i18n/I18nProvider';
 
 type MobileLink = {
   label: string;
@@ -6,16 +7,19 @@ type MobileLink = {
 };
 
 const MOBILE_LINKS: MobileLink[] = [
-  { label: 'About Us', to: '/about-us' },
-  { label: 'Testimonials', to: '/testimonials' },
-  { label: 'FAQs', to: '/faqs' },
-  { label: 'Pricing', to: '/pricing' },
-  { label: 'Projects', to: '/projects' },
-  { label: 'Blog', to: '/blog' },
-  { label: 'Contact Us', to: '/contact-us' },
+  { label: 'nav.about', to: '/about-us' },
+  { label: 'nav.testimonials', to: '/testimonials' },
+  { label: 'nav.faqs', to: '/faqs' },
+  { label: 'nav.pricing', to: '/pricing' },
+  { label: 'nav.projects', to: '/projects' },
+  { label: 'nav.blog', to: '/blog' },
+  { label: 'nav.contact', to: '/contact-us' },
 ];
 
 export default function MobileNavbar() {
+  const { t } = useI18n();
+  const company = t<{ phone: string }>('company', { phone: '' });
+  const phoneHref = company.phone.replace(/[^\d+]/g, '');
   const location = useLocation();
   const isHome = location.pathname === '/';
 
@@ -52,21 +56,24 @@ export default function MobileNavbar() {
                   {MOBILE_LINKS.map((link) => (
                       <li className="mobile-menu-list without-icon border-bottom" key={link.to}>
                           <Link to={link.to} className="nav-link">
-                              {link.label}
+                              {t(link.label)}
                           </Link>
                       </li>
                   ))}
               </ul>
               <div className="others-options d-flex d-sm-none flex-wrap align-items-center gap-4 mt-4">
                   <div className="gap-40 d-flex">
-                      <a href="tel:+001(808)5550148" className="d-flex align-items-center gap-10 text-decoration-none fw-medium call button">
+                      <a
+                        href={`tel:${phoneHref}`}
+                        className="d-flex align-items-center gap-10 text-decoration-none fw-medium call button"
+                      >
                           <img src="/assets/images/head-phone.svg" alt="head-phon" />
-                          <span className="text-secondary">+001 (808) 5550148</span>
+                          <span className="text-secondary">{company.phone}</span>
                       </a>
                   </div>
                   <Link to="/request-a-quote" className="default-btn">
                       <div className="d-flex align-items-center gap-10">
-                          Get Free Quote
+                          {t('buttons.getFreeQuote')}
                           <img src="/assets/images/icon-right-arrow.svg" alt="icon-right-arrow" />
                       </div>
                   </Link>

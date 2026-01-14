@@ -1,18 +1,11 @@
 import { Link } from 'react-router-dom';
-import PageBanner from '../components/PageBanner';
 import Subscribe from '../components/Subscribe';
+import { useI18n } from '../i18n/I18nProvider';
 
 export default function ErrorPage() {
+  const { t } = useI18n();
   return (
     <>
-      <PageBanner
-        title="Error 404"
-        backgroundImage="/assets/images/page-bg14.jpg"
-        breadcrumbs={[
-          { label: 'Home', to: '/' },
-          { label: 'Error 404' },
-        ]}
-      />
       <div className="ptb-120 position-relative z-1">
         <div className="container">
           <div className="row">
@@ -20,10 +13,10 @@ export default function ErrorPage() {
               <h1>
                 4<span>0</span>4
               </h1>
-              <h2 className="fs-24">Oops! page is not found</h2>
-              <p className="mb-4">Sorry, but the page you are looking for does not exist.</p>
+              <h2 className="fs-24">{t('errorPage.title')}</h2>
+              <p className="mb-4">{t('errorPage.description')}</p>
               <Link to="/" className="default-btn d-inline-block">
-                Back To Homepage
+                {t('errorPage.button')}
               </Link>
             </div>
           </div>

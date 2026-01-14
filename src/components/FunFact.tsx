@@ -1,29 +1,4 @@
-const FUN_FACTS = [
-  {
-    icon: '/assets/images/fun-fact.svg',
-    value: 85,
-    label: 'Repeat clients',
-    delay: 0,
-  },
-  {
-    icon: '/assets/images/fun-fact2.svg',
-    value: 38,
-    label: 'Team experience',
-    delay: 270,
-  },
-  {
-    icon: '/assets/images/fun-fact3.svg',
-    value: 74,
-    label: 'Projects Done',
-    delay: 540,
-  },
-  {
-    icon: '/assets/images/fun-fact4.svg',
-    value: 62,
-    label: 'Contractors Employed',
-    delay: 810,
-  },
-];
+import { useI18n } from '../i18n/I18nProvider';
 
 const baseAnimationStyle = (delay: number) => ({
   animationName: 'slideInUp',
@@ -35,20 +10,27 @@ const baseAnimationStyle = (delay: number) => ({
 });
 
 export default function FunFact() {
+  const { t } = useI18n();
+  const items = t<{ value: number; label: string }[]>('funFacts.items', []);
+  const funFacts = [
+    { icon: '/assets/images/fun-fact.svg', delay: 0, ...items[0] },
+    { icon: '/assets/images/fun-fact2.svg', delay: 270, ...items[1] },
+    { icon: '/assets/images/fun-fact3.svg', delay: 540, ...items[2] },
+    { icon: '/assets/images/fun-fact4.svg', delay: 810, ...items[3] },
+  ].filter((item) => item.label);
+
   return (
     <>
       <div className="fun-fact-area pt-120">
         <div className="container mw-1690">
-          <span className="partner-title mb-60 text-secondary">
-            INTERESTING AND UNEXPECTED FACTS
-          </span>
+          <span className="partner-title mb-60 text-secondary">{t('funFacts.title')}</span>
           <div
             className="d-flex flex-wrap justify-content-between align-items-center gap-15"
             data-cues="slideInUp"
             data-duration="900"
             data-disabled="true"
           >
-            {FUN_FACTS.map((fact) => (
+            {funFacts.map((fact) => (
               <div
                 className="fun-fact-single-item"
                 data-cue="slideInUp"
@@ -63,7 +45,7 @@ export default function FunFact() {
                   </div>
                   <div className="flex-grow-1">
                     <h1 className="mb-0 lh-1">
-                      <span className="counter">{fact.value}</span>+
+                      <span>{fact.value}</span>+
                     </h1>
                     <p>{fact.label}</p>
                   </div>

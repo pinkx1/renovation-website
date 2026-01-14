@@ -1,31 +1,5 @@
 import Subscribe from '../components/Subscribe';
-
-const INFO_CARDS = [
-  {
-    title: 'Phone Number',
-    icon: '/assets/images/phone2.svg',
-    image: '/assets/images/phone.png',
-    details: [
-      { label: '+(002) 0106-8710-594', href: 'tel:+(002)0106-8710-594' },
-      { label: '+(002) 0106-8710-586', href: 'tel:+(002)0106-8710-586' },
-    ],
-  },
-  {
-    title: 'Our Email',
-    icon: '/assets/images/email2.svg',
-    image: '/assets/images/email.png',
-    details: [
-      { label: 'support@pentu.com', href: 'mailto:support@pentu.com' },
-      { label: 'heloo@pentu.com', href: 'mailto:heloo@pentu.com' },
-    ],
-  },
-  {
-    title: 'Our Location',
-    icon: '/assets/images/location-pin.svg',
-    image: '/assets/images/location-pin2.png',
-    text: 'West 2nd lane Inner circular road Phoenix Arizona, 59412',
-  },
-];
+import { useI18n } from '../i18n/I18nProvider';
 
 const IMAGE_WRAPPER_STYLE = {
   position: 'relative' as const,
@@ -46,17 +20,57 @@ const IMAGE_STYLE = {
 };
 
 export default function ContactUsPage() {
+  const { t } = useI18n();
+  const company = t<{
+    phone: string;
+    phoneAlt: string;
+    email: string;
+    emailAlt: string;
+  }>('company', {
+    phone: '',
+    phoneAlt: '',
+    email: '',
+    emailAlt: '',
+  });
+  const normalizePhone = (value: string) => value.replace(/[^\d+]/g, '');
+  const infoCards = [
+    {
+      title: t('contactPage.infoCards.phone'),
+      icon: '/assets/images/phone2.svg',
+      image: '/assets/images/phone.png',
+      details: [
+        { label: company.phone, href: `tel:${normalizePhone(company.phone)}` },
+        { label: company.phoneAlt, href: `tel:${normalizePhone(company.phoneAlt)}` },
+      ],
+    },
+    {
+      title: t('contactPage.infoCards.email'),
+      icon: '/assets/images/email2.svg',
+      image: '/assets/images/email.png',
+      details: [
+        { label: company.email, href: `mailto:${company.email}` },
+        { label: company.emailAlt, href: `mailto:${company.emailAlt}` },
+      ],
+    },
+    {
+      title: t('contactPage.infoCards.location'),
+      icon: '/assets/images/location-pin.svg',
+      image: '/assets/images/location-pin2.png',
+      text: t('contactPage.locationText'),
+    },
+  ];
+
   return (
     <>
       <div className="map-area overflow-hidden">
         <div className="container-fluid p-0">
           <iframe
-            src="/contact-us_page_files/embed.html"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=37.6044%2C55.7472%2C37.63%2C55.7647&layer=mapnik&marker=55.7558%2C37.6173"
             style={{ border: 0, width: '100%', height: '650px' }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Map"
+            title={t('contactPage.mapTitle')}
           ></iframe>
         </div>
       </div>
@@ -64,7 +78,7 @@ export default function ContactUsPage() {
       <div className="contact-us-info-area pt-120">
         <div className="container mw-1690">
           <div className="row g-4 justify-content-center">
-            {INFO_CARDS.map((card) => (
+            {infoCards.map((card) => (
               <div className="col-xl-4 col-md-6" key={card.title}>
                 <div className="d-flex contact-us-info-single-item bg-gray2 gap-25 position-relative z-1">
                   <div className="flex-shrink-0">
@@ -100,8 +114,8 @@ export default function ContactUsPage() {
       <div className="contact-us-area-three ptb-120">
         <div className="container mw-1690">
           <div className="mb-50 text-center">
-            <span className="top-title">get in touch</span>
-            <h2 className="main-title mx-auto">Don’t Hesitate To Contact Us</h2>
+            <span className="top-title">{t('contactPage.getInTouchTop')}</span>
+            <h2 className="main-title mx-auto">{t('contactPage.getInTouchTitle')}</h2>
           </div>
 
           <div className="row g-4 align-items-center" data-cues="slideInUp" data-duration="900" data-disabled="true">
@@ -131,22 +145,38 @@ export default function ContactUsPage() {
                   <div className="row">
                     <div className="col-lg-6">
                       <div className="form-group mb-20">
-                        <input type="text" className="form-control border-0" placeholder="Name" />
+                        <input
+                          type="text"
+                          className="form-control border-0"
+                          placeholder={t('contactPage.formPlaceholders.name')}
+                        />
                       </div>
                     </div>
                     <div className="col-lg-6">
                       <div className="form-group mb-20">
-                        <input type="email" className="form-control border-0" placeholder="Email" />
+                        <input
+                          type="email"
+                          className="form-control border-0"
+                          placeholder={t('contactPage.formPlaceholders.email')}
+                        />
                       </div>
                     </div>
                     <div className="col-lg-6">
                       <div className="form-group mb-20">
-                        <input type="number" className="form-control border-0" placeholder="Phone" />
+                        <input
+                          type="number"
+                          className="form-control border-0"
+                          placeholder={t('contactPage.formPlaceholders.phone')}
+                        />
                       </div>
                     </div>
                     <div className="col-lg-6">
                       <div className="form-group mb-20">
-                        <input type="text" className="form-control border-0" placeholder="Subject" />
+                        <input
+                          type="text"
+                          className="form-control border-0"
+                          placeholder={t('contactPage.formPlaceholders.subject')}
+                        />
                       </div>
                     </div>
                     <div className="col-lg-12">
@@ -154,14 +184,14 @@ export default function ContactUsPage() {
                         <textarea
                           rows={7}
                           className="form-control border-0"
-                          placeholder="Write Your Message"
+                          placeholder={t('contactPage.formPlaceholders.message')}
                         ></textarea>
                       </div>
                     </div>
                     <div className="col-lg-12">
                       <button type="submit" className="default-btn border-0 active">
                         <span className="gap-10 d-flex">
-                          <span>Send Message</span>
+                          <span>{t('common.sendMessage')}</span>
                           <img src="/assets/images/icon-right-arrow.svg" alt="icon-right-arrow" />
                         </span>
                       </button>

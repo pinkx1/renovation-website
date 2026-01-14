@@ -1,109 +1,32 @@
 import { Link } from 'react-router-dom';
-import PageBanner from '../components/PageBanner';
 import Subscribe from '../components/Subscribe';
-
-const BLOG_POSTS = [
-  {
-    image: '/assets/images/blog5.jpg',
-    tag: 'Home',
-    date: '01 Jun 2025',
-    comments: 'No Comment',
-    title: 'The Complete Guide to Planning Your Home Renovation',
-    excerpt:
-      'During remodeling hidden issues such as plumbing leaks wiring mold structural damage can be identified addressed',
-  },
-  {
-    image: '/assets/images/blog6.jpg',
-    tag: 'Office',
-    date: '02 Jun 2025',
-    comments: '01 Comment',
-    title: 'Green Remodeling Sustainable Choices for a Healthier Home',
-    excerpt:
-      'Home remodeling projects can include additions like extra bedrooms home offices finished basements',
-  },
-  {
-    image: '/assets/images/blog7.jpg',
-    tag: 'Custom',
-    date: '03 Jun 2025',
-    comments: '02 Comment',
-    title: 'Bathroom Remodeling Ideas for a Spa Like Experience',
-    excerpt:
-      'Older homes may not meet current building codes or safety standards remodeling ensures home complies',
-  },
-  {
-    image: '/assets/images/blog12.jpg',
-    tag: 'Home',
-    date: '01 Jun 2025',
-    comments: 'No Comment',
-    title: 'The Complete Guide to Planning Your Home Renovation',
-    excerpt:
-      'During remodeling hidden issues such as plumbing leaks wiring mold structural damage can be identified addressed',
-  },
-  {
-    image: '/assets/images/blog13.jpg',
-    tag: 'Office',
-    date: '02 Jun 2025',
-    comments: '01 Comment',
-    title: 'Green Remodeling Sustainable Choices for a Healthier Home',
-    excerpt:
-      'Home remodeling projects can include additions like extra bedrooms home offices finished basements',
-  },
-  {
-    image: '/assets/images/blog14.jpg',
-    tag: 'Custom',
-    date: '03 Jun 2025',
-    comments: '02 Comment',
-    title: 'Bathroom Remodeling Ideas for a Spa Like Experience',
-    excerpt:
-      'Older homes may not meet current building codes or safety standards remodeling ensures home complies',
-  },
-];
-
-const POPULAR_POSTS = [
-  {
-    image: '/assets/images/blog11.jpg',
-    date: '07 Jun 2025',
-    title: 'How to Plan Your Renovation Project Budget Timeline & Tips',
-  },
-  {
-    image: '/assets/images/blog12.jpg',
-    date: '08 Jun 2025',
-    title: 'Before & After Stunning Remodeling Transformations You’ll Love',
-  },
-  {
-    image: '/assets/images/blog13.jpg',
-    date: '09 Jun 2025',
-    title: 'Common Renovation Mistakes and How to Avoid Them',
-  },
-];
-
-const CATEGORIES = [
-  'Interior Painting',
-  'Wallpaper Design',
-  'Exterior Painting',
-  'Wallpaper Removal',
-  'Tile installation',
-];
-
-const TAGS = ['Painting', 'Construction', 'Interior', 'Furniture', 'Building', 'Space', 'Urban'];
+import { useI18n } from '../i18n/I18nProvider';
 
 export default function BlogPage() {
+  const { t } = useI18n();
+  const posts = t<
+    { tag: string; date: string; comments: string; title: string; excerpt: string }[]
+  >('blogPage.posts', []);
+  const popularPosts = t<{ date: string; title: string }[]>('blogPage.popularPosts', []);
+  const categories = t<string[]>('blogPage.categories', []);
+  const tags = t<string[]>('blogPage.tags', []);
+  const blogPosts = [
+    { image: '/assets/images/blog5.jpg', ...posts[0] },
+    { image: '/assets/images/blog6.jpg', ...posts[1] },
+    { image: '/assets/images/blog7.jpg', ...posts[2] },
+    { image: '/assets/images/blog12.jpg', ...posts[3] },
+    { image: '/assets/images/blog13.jpg', ...posts[4] },
+    { image: '/assets/images/blog14.jpg', ...posts[5] },
+  ].filter((post) => post.title);
+
   return (
     <>
-      <PageBanner
-        title="Latest Blog"
-        backgroundImage="/assets/images/page-bg11.jpg"
-        breadcrumbs={[
-          { label: 'Home', to: '/' },
-          { label: 'Latest Blog' },
-        ]}
-      />
       <div className="blog-area ptb-120">
         <div className="container mw-1690">
           <div className="row g-4">
             <div className="col-lg-8">
               <div className="row g-4">
-                {BLOG_POSTS.map((post) => (
+                {blogPosts.map((post) => (
                   <div className="col-lg-6" key={`${post.title}-${post.image}`}>
                     <Link
                       to="/single-blog"
@@ -127,7 +50,7 @@ export default function BlogPage() {
                         <h3>{post.title}</h3>
                         <p>{post.excerpt}</p>
                         <span className="read-more">
-                          Browse More
+                          {t('common.browseMore')}
                           <img src="/assets/images/icon-right-arrow-black.svg" alt="icon-right-arrow-black" />
                         </span>
                       </div>
@@ -158,9 +81,9 @@ export default function BlogPage() {
             <div className="col-lg-4">
               <div className="sidebar">
                 <div className="sidebar-widget widget-search bg-gray2">
-                  <h3>Search Here</h3>
+                  <h3>{t('common.searchHere')}</h3>
                   <form className="position-relative">
-                    <input type="text" className="form-control" placeholder="Search..." />
+                    <input type="text" className="form-control" placeholder={t('search.placeholder')} />
                     <button type="submit" className="search-btn">
                       <i className="ti ti-search"></i>
                     </button>
@@ -168,12 +91,12 @@ export default function BlogPage() {
                 </div>
 
                 <div className="sidebar-widget bg-gray2">
-                  <h3>Popular Post</h3>
+                  <h3>{t('common.popularPost')}</h3>
                   <div className="popular-post-list">
-                    {POPULAR_POSTS.map((post) => (
+                    {popularPosts.map((post, index) => (
                       <Link to="/single-blog" className="d-sm-flex align-items-center item" key={post.title}>
                         <div className="flex-shrink-0 mb-3 mb-sm-0">
-                          <img src={post.image} className="object-fit-cover" alt="blog" />
+                          <img src={`/assets/images/blog${index + 11}.jpg`} className="object-fit-cover" alt="blog" />
                         </div>
                         <div className="flex-grow-1">
                           <span>{post.date}</span>
@@ -185,9 +108,9 @@ export default function BlogPage() {
                 </div>
 
                 <div className="sidebar-widget bg-gray2">
-                  <h3>News Category</h3>
+                  <h3>{t('common.newsCategory')}</h3>
                   <ul className="category-list p-0 m-0 list-unstyled">
-                    {CATEGORIES.map((category) => (
+                    {categories.map((category) => (
                       <li key={category}>
                       <Link
                           to="/categories"
@@ -202,9 +125,9 @@ export default function BlogPage() {
                 </div>
 
                 <div className="sidebar-widget bg-gray2">
-                  <h3>Popular Tags</h3>
+                  <h3>{t('common.popularTags')}</h3>
                   <ul className="p-0 m-0 list-unstyled d-flex flex-wrap tags">
-                    {TAGS.map((tag) => (
+                    {tags.map((tag) => (
                       <li key={tag}>
                         <Link to="/tags">{tag}</Link>
                       </li>

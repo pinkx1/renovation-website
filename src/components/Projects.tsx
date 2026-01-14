@@ -1,35 +1,25 @@
 import { Link } from 'react-router-dom';
-
-const PROJECTS = [
-  {
-    image: '/assets/images/project4.jpg',
-    title: 'Custom Home Renovations',
-    category: 'home renovation',
-  },
-  {
-    image: '/assets/images/project5.jpg',
-    title: 'Kitchen Remodeling',
-    category: 'home renovation',
-  },
-  {
-    image: '/assets/images/project6.jpg',
-    title: 'Bedroom Renovation',
-    category: 'home renovation',
-  },
-];
-
-const PROJECT_SLIDES = [...PROJECTS, ...PROJECTS];
+import { useI18n } from '../i18n/I18nProvider';
 
 export default function Projects() {
+  const { t } = useI18n();
+  const items = t<{ title: string; category: string }[]>('projectsHome.items', []);
+  const projects = [
+    { image: '/assets/images/project4.jpg', ...items[0] },
+    { image: '/assets/images/project5.jpg', ...items[1] },
+    { image: '/assets/images/project6.jpg', ...items[2] },
+  ].filter((item) => item.title);
+  const projectSlides = [...projects, ...projects];
+
   return (
     <>
       <div className="projects-area pt-120">
         <div className="container mw-1690">
           <div className="d-flex flex-wrap gap-20 justify-content-between align-items-center mb-50 mt-0">
             <div>
-              <span className="top-title">Latest Projects</span>
+              <span className="top-title">{t('projectsHome.topTitle')}</span>
               <h2 className="main-title mw-720">
-                We Believe In Quality Projects And More Meaningful Moments
+                {t('projectsHome.title')}
               </h2>
             </div>
             <div className="default-slide-controller d-flex align-items-end gap-10 project-arrow">
@@ -53,7 +43,7 @@ export default function Projects() {
           </div>
           <div className="swiper projects-slide">
             <div className="swiper-wrapper">
-              {PROJECT_SLIDES.map((project, index) => (
+              {projectSlides.map((project, index) => (
                 <div className="swiper-slide" key={`${project.title}-${index}`}>
                   <Link
                     to="/single-project"

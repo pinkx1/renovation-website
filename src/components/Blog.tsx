@@ -1,37 +1,5 @@
 import { Link } from 'react-router-dom';
-
-const BLOG_POSTS = [
-  {
-    image: '/assets/images/blog5.jpg',
-    tag: 'Home',
-    date: '01 Jun 2025',
-    comments: 'No Comment',
-    title: 'The Complete Guide to Planning Your Home Renovation',
-    excerpt:
-      'During remodeling hidden issues such as plumbing leaks wiring mold structural damage can be identified addressed',
-    delay: 0,
-  },
-  {
-    image: '/assets/images/blog6.jpg',
-    tag: 'Office',
-    date: '02 Jun 2025',
-    comments: '01 Comment',
-    title: 'Green Remodeling Sustainable Choices for a Healthier Home',
-    excerpt:
-      'Home remodeling projects can include additions like extra bedrooms home offices finished basements',
-    delay: 270,
-  },
-  {
-    image: '/assets/images/blog7.jpg',
-    tag: 'Custom',
-    date: '03 Jun 2025',
-    comments: '02 Comment',
-    title: 'Bathroom Remodeling Ideas for a Spa Like Experience',
-    excerpt:
-      'Older homes may not meet current building codes or safety standards remodeling ensures home complies',
-    delay: 540,
-  },
-];
+import { useI18n } from '../i18n/I18nProvider';
 
 const baseAnimationStyle = (delay: number) => ({
   animationName: 'slideInUp',
@@ -43,6 +11,16 @@ const baseAnimationStyle = (delay: number) => ({
 });
 
 export default function Blog() {
+  const { t } = useI18n();
+  const posts = t<
+    { tag: string; date: string; comments: string; title: string; excerpt: string }[]
+  >('blogHome.posts', []);
+  const blogPosts = [
+    { image: '/assets/images/blog5.jpg', delay: 0, ...posts[0] },
+    { image: '/assets/images/blog6.jpg', delay: 270, ...posts[1] },
+    { image: '/assets/images/blog7.jpg', delay: 540, ...posts[2] },
+  ].filter((post) => post.title);
+
   return (
     <>
       <div className="blog-area ptb-120">
@@ -60,7 +38,7 @@ export default function Blog() {
               data-show="true"
               style={baseAnimationStyle(0)}
             >
-              latest news
+              {t('blogHome.topTitle')}
             </span>
             <h2
               className="main-title mx-auto mw-620"
@@ -69,7 +47,7 @@ export default function Blog() {
               data-show="true"
               style={baseAnimationStyle(0)}
             >
-              Check Out Latest News Update And Articles
+              {t('blogHome.title')}
             </h2>
           </div>
           <div
@@ -78,7 +56,7 @@ export default function Blog() {
             data-duration="900"
             data-disabled="true"
           >
-            {BLOG_POSTS.map((post) => (
+            {blogPosts.map((post) => (
               <div
                 className="col-xl-4 col-md-6"
                 data-cue="slideInUp"
@@ -109,7 +87,7 @@ export default function Blog() {
                     <h3>{post.title}</h3>
                     <p>{post.excerpt}</p>
                     <span className="read-more">
-                      Browse More
+                      {t('blogHome.readMore')}
                       <img
                         src="/assets/images/icon-right-arrow-black.svg"
                         alt="icon-right-arrow-black"

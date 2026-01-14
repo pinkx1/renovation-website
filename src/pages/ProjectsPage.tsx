@@ -1,73 +1,27 @@
 import { Link } from 'react-router-dom';
-import PageBanner from '../components/PageBanner';
 import Subscribe from '../components/Subscribe';
-
-const PROJECTS = [
-  {
-    image: '/assets/images/project4.jpg',
-    title: 'Custom Home Renovations',
-    category: 'home renovation',
-    columnClass: 'col-xl-4 col-md-6',
-  },
-  {
-    image: '/assets/images/project5.jpg',
-    title: 'Kitchen Remodeling',
-    category: 'home renovation',
-    columnClass: 'col-xl-4 col-md-6',
-  },
-  {
-    image: '/assets/images/project6.jpg',
-    title: 'Bedroom Renovation',
-    category: 'home renovation',
-    columnClass: 'col-xl-4 col-md-6',
-  },
-  {
-    image: '/assets/images/project7.jpg',
-    title: 'Bedroom Renovation',
-    category: 'home renovation',
-    columnClass: 'col-md-6',
-  },
-  {
-    image: '/assets/images/project8.jpg',
-    title: 'Bedroom Renovation',
-    category: 'home renovation',
-    columnClass: 'col-md-6',
-  },
-  {
-    image: '/assets/images/project9.jpg',
-    title: 'Custom Home Renovations',
-    category: 'home renovation',
-    columnClass: 'col-xl-4 col-md-6',
-  },
-  {
-    image: '/assets/images/project10.jpg',
-    title: 'Kitchen Remodeling',
-    category: 'home renovation',
-    columnClass: 'col-xl-4 col-md-6',
-  },
-  {
-    image: '/assets/images/project11.jpg',
-    title: 'Bedroom Renovation',
-    category: 'home renovation',
-    columnClass: 'col-xl-4 col-md-6',
-  },
-];
+import { useI18n } from '../i18n/I18nProvider';
 
 export default function ProjectsPage() {
+  const { t } = useI18n();
+  const items = t<{ title: string; category: string }[]>('projectsPage.items', []);
+  const projects = [
+    { image: '/assets/images/project4.jpg', columnClass: 'col-xl-4 col-md-6', ...items[0] },
+    { image: '/assets/images/project5.jpg', columnClass: 'col-xl-4 col-md-6', ...items[1] },
+    { image: '/assets/images/project6.jpg', columnClass: 'col-xl-4 col-md-6', ...items[2] },
+    { image: '/assets/images/project7.jpg', columnClass: 'col-md-6', ...items[3] },
+    { image: '/assets/images/project8.jpg', columnClass: 'col-md-6', ...items[4] },
+    { image: '/assets/images/project9.jpg', columnClass: 'col-xl-4 col-md-6', ...items[5] },
+    { image: '/assets/images/project10.jpg', columnClass: 'col-xl-4 col-md-6', ...items[6] },
+    { image: '/assets/images/project11.jpg', columnClass: 'col-xl-4 col-md-6', ...items[7] },
+  ].filter((project) => project.title);
+
   return (
     <>
-      <PageBanner
-        title="Latest Projects"
-        backgroundImage="/assets/images/page-bg8.jpg"
-        breadcrumbs={[
-          { label: 'Home', to: '/' },
-          { label: 'Latest Projects' },
-        ]}
-      />
       <div className="projects-area ptb-120">
         <div className="container mw-1690">
           <div className="row g-4">
-            {PROJECTS.map((project) => (
+            {projects.map((project) => (
               <div className={project.columnClass} key={`${project.title}-${project.image}`}>
                 <Link
                   to="/single-project"

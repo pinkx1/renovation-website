@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useI18n } from '../i18n/I18nProvider';
 
 export default function Consultation() {
+  const { t } = useI18n();
+
   return (
     <>
       <div className="consultation-area">
@@ -16,7 +19,7 @@ export default function Consultation() {
                                       </div>
                                   </div>
                                   <div className="flex-grow-1">
-                                      <h3>Contact Us Today for a Free remodeling Consultation</h3>
+                                      <h3>{t('consultation.title')}</h3>
                                   </div>
                               </div>
                           </div>
@@ -24,7 +27,7 @@ export default function Consultation() {
                       <div className="col-lg-6" data-cue="slideInUp" data-duration="900" data-show="true" style={{ animationName: "slideInUp", animationDuration: "900ms", animationTimingFunction: "ease", animationDelay: "0ms", animationDirection: "normal", animationFillMode: "both" }}>
                           <Link to="/contact-us" className="default-btn border-0 ms-200">
                               <span className="gap-10 d-flex">
-                                  <span>Contact Us Now</span>
+                                  <span>{t('consultation.button')}</span>
                                   <img src="/assets/images/icon-right-arrow.svg" alt="icon-right-arrow" />
                               </span>
                           </Link>

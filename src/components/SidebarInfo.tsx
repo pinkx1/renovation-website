@@ -1,24 +1,5 @@
 import { Link } from 'react-router-dom';
-
-const SIDEBAR_CONTACTS = [
-  {
-    icon: 'ti ti-map-pin-filled',
-    title: 'Location',
-    content: '70 East 65th Street, New York City',
-  },
-  {
-    icon: 'ti ti-mail-filled',
-    title: 'Email',
-    content: 'hello@pentu.com',
-    href: 'mailto:hello@pentu.com',
-  },
-  {
-    icon: 'ti ti-phone-filled',
-    title: 'Phone',
-    content: '+971(467) 372 2870',
-    href: 'tel:+971(467)3722870',
-  },
-];
+import { useI18n } from '../i18n/I18nProvider';
 
 const SIDEBAR_SOCIALS = [
   { href: 'https://www.facebook.com/', icon: 'ti ti-brand-facebook' },
@@ -28,6 +9,33 @@ const SIDEBAR_SOCIALS = [
 ];
 
 export default function SidebarInfo() {
+  const { t } = useI18n();
+  const company = t<{ address: string; email: string; phone: string }>('company', {
+    address: '',
+    email: '',
+    phone: '',
+  });
+  const phoneHref = company.phone.replace(/[^\d+]/g, '');
+  const sidebarContacts = [
+    {
+      icon: 'ti ti-map-pin-filled',
+      title: t('footerContacts.location'),
+      content: company.address,
+    },
+    {
+      icon: 'ti ti-mail-filled',
+      title: t('footerContacts.email'),
+      content: company.email,
+      href: `mailto:${company.email}`,
+    },
+    {
+      icon: 'ti ti-phone-filled',
+      title: t('footerContacts.phone'),
+      content: company.phone,
+      href: `tel:${phoneHref}`,
+    },
+  ];
+
   return (
     <>
       <div className="offcanvas offcanvas-end sidebar-info bg-gray " tabIndex={-1} id="offcanvasRight">
@@ -42,11 +50,11 @@ export default function SidebarInfo() {
           </div>
           <div className="offcanvas-body">
               <div className="sidebar-single-item">
-                  <p>We pride ourselves on attention to detail reliability and a customer-first approach that ensures satisfaction from start to finish from color consultation to coat</p>
+                  <p>{t('sidebar.blurb')}</p>
                   <div className="newsletter-form">
-                      <h3>Newsletter</h3>
+                      <h3>{t('sidebar.newsletterTitle')}</h3>
                       <form className="position-relative z-1">
-                          <input type="email" className="form-control" placeholder="Enter Your Email" />
+                          <input type="email" className="form-control" placeholder={t('sidebar.emailPlaceholder')} />
                           <button type="submit" className="submit-btn position-absolute top-50 end-0 translate-middle-y">
                               <img src="/assets/images/send.svg" alt="send" />
                           </button>
@@ -55,9 +63,9 @@ export default function SidebarInfo() {
               </div>
               <div className="sidebar-single-item">
                   <div className="sidebar-info">
-                      <h3>Contact Info</h3>
+                      <h3>{t('sidebar.contactInfo')}</h3>
                       <ul className="p-0 m-0 list-unstyled info-list">
-                          {SIDEBAR_CONTACTS.map((item) => (
+                          {sidebarContacts.map((item) => (
                               <li className="d-flex" key={item.title}>
                                   <div className="flex-shrink-0">
                                       <i className={item.icon}></i>
@@ -76,7 +84,7 @@ export default function SidebarInfo() {
                   </div>
               </div>
               <div className="sidebar-single-item">
-                  <h3>Follow Us</h3>
+                  <h3>{t('sidebar.followUs')}</h3>
                   <ul className="p-0 mb-0 list-unstyled d-flex align-items-center social-link">
                       {SIDEBAR_SOCIALS.map((item) => (
                           <li key={item.href}>

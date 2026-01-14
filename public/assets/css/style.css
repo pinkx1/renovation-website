@@ -11,6 +11,7 @@ Primary Use: HTML Template for Painting, Building & Renovation Services
 
 -------------------------------------------------------------------*/
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Manrope:wght@200..800&display=swap");
 /* Dark background */
 /* Slightly lighter for cards */
 /* Light text color */
@@ -12360,6 +12361,11 @@ body {
   font-family: "Work Sans", sans-serif;
 }
 
+
+html[lang="ru"] body {
+  font-family: "Inter", "Work Sans", sans-serif;
+}
+
 a {
   transition: all ease 0.5s;
   color: #555555;
@@ -12374,6 +12380,35 @@ a:hover {
   font-family: "Forma DJR Banner";
   text-transform: capitalize;
   letter-spacing: 1px;
+}
+
+html[lang="ru"] .h1,
+html[lang="ru"] .h2,
+html[lang="ru"] .h3,
+html[lang="ru"] .h4,
+html[lang="ru"] .h5,
+html[lang="ru"] .h6,
+html[lang="ru"] h1,
+html[lang="ru"] h2,
+html[lang="ru"] h3,
+html[lang="ru"] h4,
+html[lang="ru"] h5,
+html[lang="ru"] h6 {
+  font-family: "Manrope", "Forma DJR Banner", sans-serif;
+  text-transform: none;
+}
+
+html[lang="ru"] .text-capitalize,
+html[lang="ru"] .default-btn,
+html[lang="ru"] .monograms,
+html[lang="ru"] .testimonial-single-item h4,
+html[lang="ru"] .testimonial-single-item .h4,
+html[lang="ru"] .blog-details-content h2,
+html[lang="ru"] .blog-details-content .h2,
+html[lang="ru"] .faq-wrapper.accordion .accordion-item .accordion-header .accordion-button,
+html[lang="ru"] .copy-right-area p,
+html[lang="ru"] .pricing-single-item ul li {
+  text-transform: none;
 }
 
 p {
@@ -15565,6 +15600,9 @@ Page-navigation Area Style
 .projects-single-item-two:hover .projects-content {
   bottom: 0;
 }
+.projects-area .projects-single-item-two .projects-content {
+  bottom: 0;
+}
 
 .projects-slide .swiper-slide-active .projects-single-item-two .projects-content {
   bottom: 0;
@@ -15832,6 +15870,10 @@ Page-navigation Area Style
     opacity: 0.12;
     border: 1.5px solid #160A05;
   }
+}
+
+.banner-area-two .fun-fact-single-item::before {
+  display: none;
 }
 @media (min-width: 992px) {
   .client-says {
@@ -17760,6 +17802,16 @@ Page-navigation Area Style
   color: #fff;
 }
 .copy-right-wrap .policy a:hover {
+  color: #FF6726;
+}
+.copy-right-wrap .language-switch {
+  color: #fff;
+}
+.copy-right-wrap .language-switch button {
+  color: #fff;
+  font-weight: 500;
+}
+.copy-right-wrap .language-switch button.active {
   color: #FF6726;
 }
 

@@ -1,21 +1,4 @@
-const TESTIMONIALS = [
-  {
-    quote: 'Impeccable craftsmanship and outstanding service!',
-    text:
-      'What impressed us most was the level of communication and kept informed stage and concerns change were addressed promptly and with care the project completed to on time and within the agreed budget which is rare in remodeling our house happier with the results highly recommend their services to anyone looking transform their living space. It was a smooth stress free experience',
-    name: 'Marquite  Pridgen',
-    location: 'Brooklyn, USA',
-    avatar: '/assets/images/user5.jpg',
-  },
-  {
-    quote: 'Exceeded Our Expectations',
-    text:
-      '"From start to finish, the experience was outstanding. The painters were detail-oriented, respectful of our space, and finished earlier than expected. The color consultation helped us choose the perfect tones that completely refreshed our living room. Highly recommend their services!"',
-    name: 'Daniela  Simmons',
-    location: 'Chicago, USA',
-    avatar: '/assets/images/user6.jpg',
-  },
-];
+import { useI18n } from '../i18n/I18nProvider';
 
 const USER_AVATARS = [
   '/assets/images/user7.jpg',
@@ -24,15 +7,24 @@ const USER_AVATARS = [
 ];
 
 export default function Testimonials() {
+  const { t } = useI18n();
+  const items = t<
+    { quote: string; text: string; name: string; location: string }[]
+  >('testimonialsHome.items', []);
+  const testimonials = [
+    { avatar: '/assets/images/user5.jpg', ...items[0] },
+    { avatar: '/assets/images/user6.jpg', ...items[1] },
+  ].filter((item) => item?.quote);
+
   return (
     <>
       <div className="testimonial-area-two bg-secondary ptb-120">
         <div className="container mw-1690">
           <div className="d-flex flex-wrap gap-20 justify-content-between align-items-center mb-50 mt-0">
             <div>
-              <span className="top-title two text-white">testimonial</span>
+              <span className="top-title two text-white">{t('testimonialsHome.topTitle')}</span>
               <h2 className="main-title text-white mw-720">
-                What Our Clients Say About Our Painting Company
+                {t('testimonialsHome.title')}
               </h2>
             </div>
             <div className="default-slide-controller d-flex align-items-end gap-10 project-arrow">
@@ -79,7 +71,7 @@ export default function Testimonials() {
                     ))}
                   </div>
                   <p>
-                    Trusted By <span>1000+</span> Satisfied Customers
+                    {t('testimonialsHome.trustedBy')}
                   </p>
                 </div>
               </div>
@@ -87,7 +79,7 @@ export default function Testimonials() {
             <div className="col-lg-6">
               <div className="swiper testimonial-slide">
                 <div className="swiper-wrapper">
-                  {TESTIMONIALS.map((item) => (
+                  {testimonials.map((item) => (
                     <div className="swiper-slide" key={item.name}>
                       <div className="testimonial-single-item style-two">
                         <div className="mb-3">

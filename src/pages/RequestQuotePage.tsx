@@ -1,6 +1,6 @@
-import PageBanner from '../components/PageBanner';
 import Partners from '../components/Partners';
 import Subscribe from '../components/Subscribe';
+import { useI18n } from '../i18n/I18nProvider';
 
 const IMAGE_WRAPPER_STYLE = {
   position: 'relative' as const,
@@ -21,21 +21,32 @@ const IMAGE_STYLE = {
 };
 
 export default function RequestQuotePage() {
+  const { t } = useI18n();
+  const placeholders = t<{
+    name: string;
+    email: string;
+    phone: string;
+    category: string;
+    location: string;
+    message: string;
+  }>('requestQuote.placeholders', {
+    name: '',
+    email: '',
+    phone: '',
+    category: '',
+    location: '',
+    message: '',
+  });
+  const categories = t<string[]>('requestQuote.categories', []);
+  const locations = t<string[]>('requestQuote.locations', []);
+
   return (
     <>
-      <PageBanner
-        title="Request A Quote"
-        backgroundImage="/assets/images/page-bg10.jpg"
-        breadcrumbs={[
-          { label: 'Home', to: '/' },
-          { label: 'Request A Quote' },
-        ]}
-      />
       <div className="contact-us-area ptb-120">
         <div className="container mw-1690">
           <div className="mb-50 text-center">
-            <span className="top-title">quote</span>
-            <h2 className="main-title mx-auto">Request A Quote Now For Your Next Project</h2>
+            <span className="top-title">{t('requestQuote.topTitle')}</span>
+            <h2 className="main-title mx-auto">{t('requestQuote.title')}</h2>
           </div>
 
           <div className="row g-4 align-items-center" data-cues="slideInUp" data-duration="900" data-disabled="true">
@@ -64,17 +75,17 @@ export default function RequestQuotePage() {
                   <div className="row">
                     <div className="col-lg-6">
                       <div className="form-group mb-20">
-                        <input type="text" className="form-control border-0" placeholder="Name" />
+                        <input type="text" className="form-control border-0" placeholder={placeholders.name} />
                       </div>
                     </div>
                     <div className="col-lg-6">
                       <div className="form-group mb-20">
-                        <input type="email" className="form-control border-0" placeholder="Email" />
+                        <input type="email" className="form-control border-0" placeholder={placeholders.email} />
                       </div>
                     </div>
                     <div className="col-lg-6">
                       <div className="form-group mb-20">
-                        <input type="number" className="form-control border-0" placeholder="Phone" />
+                        <input type="number" className="form-control border-0" placeholder={placeholders.phone} />
                       </div>
                     </div>
                     <div className="col-lg-6">
@@ -84,10 +95,12 @@ export default function RequestQuotePage() {
                           aria-label="Default select example"
                           defaultValue=""
                         >
-                          <option value="">Project Category</option>
-                          <option value="home-renovation">Home Renovation</option>
-                          <option value="kitchen-remodeling">Kitchen Remodeling</option>
-                          <option value="bedroom-renovation">Bedroom Renovation</option>
+                          <option value="">{placeholders.category}</option>
+                          {categories.map((category) => (
+                            <option key={category} value={category.toLowerCase().replace(/\s+/g, '-')}>
+                              {category}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
@@ -98,10 +111,12 @@ export default function RequestQuotePage() {
                           aria-label="Default select example"
                           defaultValue=""
                         >
-                          <option value="">Project Location</option>
-                          <option value="seattle">Seattle</option>
-                          <option value="san-francisco">San Francisco</option>
-                          <option value="austin">Austin</option>
+                          <option value="">{placeholders.location}</option>
+                          {locations.map((location) => (
+                            <option key={location} value={location.toLowerCase().replace(/\s+/g, '-')}>
+                              {location}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
@@ -110,14 +125,14 @@ export default function RequestQuotePage() {
                         <textarea
                           rows={7}
                           className="form-control border-0"
-                          placeholder="Write Your Message"
+                          placeholder={placeholders.message}
                         ></textarea>
                       </div>
                     </div>
                     <div className="col-lg-12">
                       <button type="submit" className="default-btn border-0 active">
                         <span className="gap-10 d-flex">
-                          <span>Send Message</span>
+                          <span>{t('common.sendMessage')}</span>
                           <img src="/assets/images/icon-right-arrow.svg" alt="icon-right-arrow" />
                         </span>
                       </button>

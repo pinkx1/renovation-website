@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 type SwiperInstance = {
@@ -82,12 +82,7 @@ export default function useTemplateScripts() {
     doc.documentElement.style.height = 'auto';
 
     let lenis: LenisInstance | undefined;
-    let parallax: UkiyoInstance | undefined;
     let rafId: number | null = null;
-
-    if (w.Ukiyo) {
-      parallax = new w.Ukiyo('.ukiyo', { externalRAF: true });
-    }
 
     if (w.Lenis) {
       lenis = new w.Lenis({
@@ -97,11 +92,8 @@ export default function useTemplateScripts() {
       });
     }
 
-    if (lenis || parallax) {
+    if (lenis) {
       const raf = (time: number) => {
-        if (parallax?.animate) {
-          parallax.animate();
-        }
         if (lenis) {
           lenis.raf(time);
         }
@@ -122,14 +114,14 @@ export default function useTemplateScripts() {
         window.cancelAnimationFrame(rafId);
       }
       lenis?.destroy?.();
-      parallax?.destroy?.();
     };
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const w = window as TemplateWindow;
     const doc = document;
     const cleanups: Array<() => void> = [];
+    let parallax: UkiyoInstance | undefined;
 
     const swipers: SwiperInstance[] = [];
     const Swiper = w.Swiper;
@@ -318,6 +310,11 @@ export default function useTemplateScripts() {
           1600: { slidesPerView: 4 },
         },
       });
+    }
+
+    if (w.Ukiyo) {
+      parallax = new w.Ukiyo('.ukiyo', {});
+      cleanups.push(() => parallax?.destroy?.());
     }
 
     cleanups.push(() => {

@@ -1,80 +1,70 @@
 import { Link } from 'react-router-dom';
-
-const SERVICE_BENEFITS = [
-  'Manufacturer Quality Equipment',
-  'Use Premium Paints And Materials',
-  '100% Satisfaction Guarantee',
-];
-
-const SERVICE_TABS = [
-  {
-    key: 'kitchen',
-    title: 'Kitchen Remodeling',
-    icon: '/assets/images/icon-services4.svg',
-    description:
-      'Kitchen remodeling renovation is a wonderful way to create a more comfortable functional personalized retreat within home improving storage enhancing lighting',
-    buttonTextClassName: 'text-white',
-    image: {
-      src: '/assets/images/services4.jpg',
-      alt: 'services',
-      className: 'img h-100 object-fit-cover ukiyo',
-      wrapperStyle: {
-        position: 'relative',
-        width: '495px',
-        overflow: 'hidden',
-        borderRadius: '15px',
-        isolation: 'isolate',
-        height: '376px',
-      },
-      imageStyle: {
-        display: 'block',
-        overflow: 'hidden',
-        backfaceVisibility: 'hidden',
-        objectFit: 'cover',
-        width: '495px',
-        height: '564px',
-      },
-    },
-  },
-  {
-    key: 'bedroom',
-    title: 'Bedroom Renovation',
-    icon: '/assets/images/icon-services5.svg',
-    description:
-      'Bedroom renovation is a wonderful way to create a more comfortable functional personalized retreat within home improving storage enhancing lighting',
-    image: {
-      src: '/assets/images/services5.jpg',
-      alt: 'services',
-      className: 'img h-100 object-fit-cover',
-    },
-  },
-  {
-    key: 'exterior',
-    title: 'Exterior Painting',
-    icon: '/assets/images/icon-services6.svg',
-    description:
-      'Exterior renovation is a wonderful way to create a more comfortable functional personalized retreat within home improving storage enhancing lighting',
-    image: {
-      src: '/assets/images/services6.jpg',
-      alt: 'services',
-      className: 'img h-100 object-fit-cover',
-    },
-  },
-  {
-    key: 'bathroom',
-    title: 'Bathroom Painting',
-    icon: '/assets/images/icon-services7.svg',
-    description:
-      'Bathroom renovation is a wonderful way to create a more comfortable functional personalized retreat within home improving storage enhancing lighting',
-    image: {
-      src: '/assets/images/services7.jpg',
-      alt: 'services',
-      className: 'img h-100 object-fit-cover',
-    },
-  },
-];
+import { useI18n } from '../i18n/I18nProvider';
 
 export default function Services() {
+  const { t } = useI18n();
+  const benefits = t<string[]>('servicesHome.benefits', []);
+  const tabs = t<{ title: string; description: string }[]>('servicesHome.tabs', []);
+  const serviceTabs = [
+    {
+      key: 'kitchen',
+      icon: '/assets/images/icon-services4.svg',
+      buttonTextClassName: 'text-white',
+      image: {
+        src: '/assets/images/services4.jpg',
+        alt: 'services',
+        className: 'img h-100 object-fit-cover ukiyo',
+        wrapperStyle: {
+          position: 'relative',
+          width: '495px',
+          overflow: 'hidden',
+          borderRadius: '15px',
+          isolation: 'isolate',
+          height: '376px',
+        },
+        imageStyle: {
+          display: 'block',
+          overflow: 'hidden',
+          backfaceVisibility: 'hidden',
+          objectFit: 'cover',
+          width: '495px',
+          height: '564px',
+        },
+      },
+    },
+    {
+      key: 'bedroom',
+      icon: '/assets/images/icon-services5.svg',
+      image: {
+        src: '/assets/images/services5.jpg',
+        alt: 'services',
+        className: 'img h-100 object-fit-cover',
+      },
+    },
+    {
+      key: 'exterior',
+      icon: '/assets/images/icon-services6.svg',
+      image: {
+        src: '/assets/images/services6.jpg',
+        alt: 'services',
+        className: 'img h-100 object-fit-cover',
+      },
+    },
+    {
+      key: 'bathroom',
+      icon: '/assets/images/icon-services7.svg',
+      image: {
+        src: '/assets/images/services7.jpg',
+        alt: 'services',
+        className: 'img h-100 object-fit-cover',
+      },
+    },
+  ].map((tab, index) => ({
+    ...tab,
+    title: tabs[index]?.title ?? '',
+    description: tabs[index]?.description ?? '',
+  }));
+
   return (
     <>
       <div
@@ -83,10 +73,8 @@ export default function Services() {
       >
         <div className="container mw-1690">
           <div className="mb-50 mt-0 text-center">
-            <span className="top-title">our services</span>
-            <h2 className="main-title mx-auto mw-550">
-              Transform Your Space With Our Expertise
-            </h2>
+            <span className="top-title">{t('servicesHome.topTitle')}</span>
+            <h2 className="main-title mx-auto mw-550">{t('servicesHome.title')}</h2>
           </div>
           <div className="row align-items-center g-4">
             <div className="col-xl-4">
@@ -96,7 +84,7 @@ export default function Services() {
                 role="tablist"
                 aria-orientation="vertical"
               >
-                {SERVICE_TABS.map((item, index) => {
+                {serviceTabs.map((item, index) => {
                   const isActive = index === 0;
                   const tabId = `v-pills-${item.key}-tab`;
                   const paneId = `v-pills-${item.key}`;
@@ -130,7 +118,7 @@ export default function Services() {
             </div>
             <div className="col-xl-8">
               <div className="tab-content" id="v-pills-tabContent">
-                {SERVICE_TABS.map((item, index) => {
+                {serviceTabs.map((item, index) => {
                   const isActive = index === 0;
                   const tabId = `v-pills-${item.key}-tab`;
                   const paneId = `v-pills-${item.key}`;
@@ -171,7 +159,7 @@ export default function Services() {
                               <h3>{item.title}</h3>
                               <p>{item.description}</p>
                               <ul className="p-0 mb-0 list-unstyled">
-                                {SERVICE_BENEFITS.map((benefit) => (
+                                {benefits.map((benefit) => (
                                   <li className="d-flex align-items-center gap-10" key={benefit}>
                                     <i className="ti ti-rosette-discount-check-filled text-secondary"></i>
                                     <span className="text-secondary">{benefit}</span>
@@ -184,7 +172,7 @@ export default function Services() {
                                     item.buttonTextClassName ? ` ${item.buttonTextClassName}` : ''
                                   }`}
                                 >
-                                  Browse More
+                                  {t('servicesHome.button')}
                                   <img
                                     src="/assets/images/icon-right-arrow.svg"
                                     alt="icon-right-arrow"

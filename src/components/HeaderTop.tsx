@@ -1,21 +1,10 @@
 import { Link } from 'react-router-dom';
-
-const HEADER_INFO = [
-  {
-    label: 'Location:',
-    value: '70 East 65th Street, New York City',
-  },
-  {
-    label: 'Email:',
-    value: 'hello@pentu.com',
-    href: 'mailto:hello@pentu.com',
-  },
-];
+import { useI18n } from '../i18n/I18nProvider';
 
 const HEADER_LINKS = [
-  { label: 'About', to: '/about-us' },
-  { label: 'FAQ', to: '/faqs' },
-  { label: 'Testimonials', to: '/testimonials' },
+  { key: 'header.links.about', to: '/about-us' },
+  { key: 'header.links.faq', to: '/faqs' },
+  { key: 'header.links.testimonials', to: '/testimonials' },
 ];
 
 const HEADER_SOCIALS = [
@@ -25,6 +14,20 @@ const HEADER_SOCIALS = [
 ];
 
 export default function HeaderTop() {
+  const { t } = useI18n();
+  const company = t<{ address: string; email: string }>('company', { address: '', email: '' });
+  const headerInfo = [
+    {
+      label: t('header.locationLabel'),
+      value: company.address,
+    },
+    {
+      label: t('header.emailLabel'),
+      value: company.email,
+      href: `mailto:${company.email}`,
+    },
+  ];
+
   return (
     <>
       <div className="header-area bg-secondary mx-0">
@@ -32,7 +35,7 @@ export default function HeaderTop() {
               <div className="row align-items-center gy-2">
                   <div className="col-xl-6 col-lg-7">
                       <ul className="d-flex flex-wrap justify-content-center justify-content-lg-start flex-md-nowrap align-items-center p-0 m-0 list-unstyled header-info">
-                          {HEADER_INFO.map((item) => (
+                          {headerInfo.map((item) => (
                               <li className="d-flex align-items-center gap-6" key={item.label}>
                                   <span className="fw-semibold">{item.label}</span>
                                   {item.href ? (
@@ -51,7 +54,7 @@ export default function HeaderTop() {
                          <div className="d-flex link">
                               {HEADER_LINKS.map((item) => (
                                   <Link key={item.to} to={item.to}>
-                                      {item.label}
+                                      {t(item.key)}
                                   </Link>
                               ))}
                           </div>

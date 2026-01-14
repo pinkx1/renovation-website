@@ -1,34 +1,51 @@
-import PageBanner from '../components/PageBanner';
 import Subscribe from '../components/Subscribe';
-
-const PROJECT_INFO = [
-  { label: 'Project Name:', value: 'Custom Home renovation' },
-  { label: 'Client::', value: 'Florence Smith' },
-  { label: 'Tags:', value: 'painting, interior, building' },
-  { label: 'Budgets:', value: '60,000 USD' },
-  { label: 'Start Date:', value: '23 Jun 2025' },
-  { label: 'End Date:', value: '17 September 2025' },
-];
-
-const CHECK_LIST = [
-  'Comprehensive Residential & Commercial Painting Services',
-  'Professional & Experienced Painters',
-  'Top-Quality Materials & Eco-Friendly Options',
-  'Detailed Surface Preparation',
-  'Transparent Pricing & Free Estimates',
-];
+import { useI18n } from '../i18n/I18nProvider';
 
 export default function SingleProjectPage() {
+  const { t } = useI18n();
+  const company = t<{ email: string; emailAlt: string; phone: string; phoneAlt: string }>('company', {
+    email: '',
+    emailAlt: '',
+    phone: '',
+    phoneAlt: '',
+  });
+  const phoneHref = company.phone.replace(/[^\d+]/g, '');
+  const singleProject = t<{
+    title: string;
+    paragraphs: string[];
+    solutionTitle: string;
+    solutionText: string;
+    checklist: string[];
+    processTitle: string;
+    processText: string;
+    closingText: string;
+    projectInfoTitle: string;
+    ratingLabel: string;
+    info: { label: string; value: string }[];
+    freeConsultation: string;
+    emailSupport: string;
+    scheduleProject: string;
+    schedulePlaceholders: { name: string; email: string; message: string };
+  }>('singleProject', {
+    title: '',
+    paragraphs: [],
+    solutionTitle: '',
+    solutionText: '',
+    checklist: [],
+    processTitle: '',
+    processText: '',
+    closingText: '',
+    projectInfoTitle: '',
+    ratingLabel: '',
+    info: [],
+    freeConsultation: '',
+    emailSupport: '',
+    scheduleProject: '',
+    schedulePlaceholders: { name: '', email: '', message: '' },
+  });
+
   return (
     <>
-      <PageBanner
-        title="Project Details"
-        backgroundImage="/assets/images/page-bg3.jpg"
-        breadcrumbs={[
-          { label: 'Home', to: '/' },
-          { label: 'Project Details' },
-        ]}
-      />
       <div className="services-details-area ptb-120">
         <div className="container mw-1690">
           <div className="row g-4">
@@ -48,29 +65,16 @@ export default function SingleProjectPage() {
                   </div>
                 </div>
 
-                <h2>Custom Home Renovations</h2>
-                <p>
-                  Roller painting is a fast, efficient, and effective technique for achieving
-                  smooth and even coverage on large surfaces. Ideal for walls and ceilings, this
-                  method allows for a clean finish with minimal streaks and a consistent texture.
-                </p>
-                <p>
-                  Our expert color consultants take into account your style preferences, existing
-                  décor, architectural elements, and natural lighting to recommend shades that
-                  complement your vision. With professional guidance, you can avoid costly mistakes,
-                  gain confidence in your choices, and achieve a cohesive, beautiful result that
-                  truly reflects your personality and purpose.
-                </p>
+                <h2>{singleProject.title}</h2>
+                {singleProject.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
 
-                <h3>project solution</h3>
-                <p>
-                  Color consultation is a personalized service designed to help you choose the
-                  perfect palette for your space. Whether refreshing a single room or transforming
-                  an entire property, selecting the right colors can greatly impact mood
-                </p>
+                <h3>{singleProject.solutionTitle}</h3>
+                <p>{singleProject.solutionText}</p>
 
                 <ul className="p-0 mb-0 mt-4 list-unstyled check-list">
-                  {CHECK_LIST.map((item) => (
+                  {singleProject.checklist.map((item) => (
                     <li className="d-flex align-items-center gap-10" key={item}>
                       <i className="ti ti-circle-check text-primary fs-20"></i>
                       <span className="text-secondary fw-medium">{item}</span>
@@ -78,14 +82,8 @@ export default function SingleProjectPage() {
                   ))}
                 </ul>
 
-                <h4>Process &amp; Challenge</h4>
-                <p>
-                  Wall painting is more than just adding color it's about creating atmosphere
-                  enhancing style and expressing textures personality it’s a bold feature wall, a
-                  calming neutral palette, or a creative design, wall painting can dramatically
-                  transform any room. With the right combination of colors, textures, and
-                  techniques, walls can reflect your taste and elevate
-                </p>
+                <h4>{singleProject.processTitle}</h4>
+                <p>{singleProject.processText}</p>
 
                 <div className="position-relative z-1 pt-2 mb-4">
                   <img src="/assets/images/project12.jpg" alt="project" />
@@ -98,21 +96,15 @@ export default function SingleProjectPage() {
                   </a>
                 </div>
 
-                <p>
-                  At our painting company, we are committed to transforming spaces with precision,
-                  passion, and professionalism. Whether it's a residential home, commercial property,
-                  or industrial site, our team of skilled painters delivers top-quality finishes
-                  using premium materials and modern techniques. We pride ourselves on attention to
-                  detail, reliability, and a customer-first approach
-                </p>
+                <p>{singleProject.closingText}</p>
               </div>
             </div>
             <div className="col-xl-4">
               <div className="sidebar">
                 <div className="sidebar-widget widget-search bg-gray2">
-                  <h3>Search Here</h3>
+                  <h3>{t('common.searchHere')}</h3>
                   <form className="position-relative">
-                    <input type="text" className="form-control" placeholder="Search..." />
+                    <input type="text" className="form-control" placeholder={t('search.placeholder')} />
                     <button type="submit" className="search-btn">
                       <i className="ti ti-search"></i>
                     </button>
@@ -120,9 +112,9 @@ export default function SingleProjectPage() {
                 </div>
 
                 <div className="sidebar-widget bg-gray2">
-                  <h3>Project Information</h3>
+                  <h3>{singleProject.projectInfoTitle}</h3>
                   <ul className="category-list p-0 m-0 list-unstyled">
-                    {PROJECT_INFO.map((item) => (
+                    {singleProject.info.map((item) => (
                       <li
                         className="d-flex flex-wrap gap-10 justify-content-between align-items-center"
                         key={item.label}
@@ -132,7 +124,7 @@ export default function SingleProjectPage() {
                       </li>
                     ))}
                     <li className="d-flex flex-wrap gap-10 justify-content-between align-items-center">
-                      <span className="text-secondary fw-medium">Rating:</span>
+                      <span className="text-secondary fw-medium">{singleProject.ratingLabel}</span>
                       <div className="d-flex">
                         {Array.from({ length: 5 }).map((_, index) => (
                           <i className="ti ti-star-filled fs-18 text-warning" key={index}></i>
@@ -151,12 +143,14 @@ export default function SingleProjectPage() {
                         </div>
                       </div>
                       <div className="flex-grow-1">
-                        <span className="d-block text-white fs-22 fw-bold mb-2">Free Consultation</span>
+                        <span className="d-block text-white fs-22 fw-bold mb-2">
+                          {singleProject.freeConsultation}
+                        </span>
                         <a
-                          href="tel:+001(808)5550148"
+                          href={`tel:${phoneHref}`}
                           className="d-block text-white text-decoration-none"
                         >
-                          +(56)123-7865-3245 / +(12)345-7890-1234
+                          {company.phone} / {company.phoneAlt}
                         </a>
                       </div>
                     </div>
@@ -167,12 +161,12 @@ export default function SingleProjectPage() {
                         </div>
                       </div>
                       <div className="flex-grow-1">
-                        <span className="d-block text-white fs-22 fw-bold mb-2">Email Support</span>
+                        <span className="d-block text-white fs-22 fw-bold mb-2">{singleProject.emailSupport}</span>
                         <a
-                          href="mailto:heloo@pentu.com"
+                          href={`mailto:${company.email}`}
                           className="d-block text-white text-decoration-none"
                         >
-                          heloo@pentu.com / support@pentu.com
+                          {company.email} / {company.emailAlt}
                         </a>
                       </div>
                     </div>
@@ -180,20 +174,24 @@ export default function SingleProjectPage() {
                 </div>
 
                 <div className="sidebar-widget bg-gray2">
-                  <h3>Schedule Your Project</h3>
+                  <h3>{singleProject.scheduleProject}</h3>
                   <form>
                     <div className="mb-4">
-                      <input type="text" className="form-control" placeholder="Name" />
+                      <input type="text" className="form-control" placeholder={singleProject.schedulePlaceholders.name} />
                     </div>
                     <div className="mb-4">
-                      <input type="email" className="form-control" placeholder="Email" />
+                      <input type="email" className="form-control" placeholder={singleProject.schedulePlaceholders.email} />
                     </div>
                     <div className="mb-4">
-                      <textarea className="form-control" placeholder="Your Message" rows={5}></textarea>
+                      <textarea
+                        className="form-control"
+                        placeholder={singleProject.schedulePlaceholders.message}
+                        rows={5}
+                      ></textarea>
                     </div>
                     <button type="submit" className="default-btn border-0">
                       <span>
-                        Contact Now
+                        {t('common.contactNow')}
                         <img src="/assets/images/icon-right-arrow.svg" alt="icon-right-arrow" />
                       </span>
                     </button>

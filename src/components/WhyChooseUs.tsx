@@ -1,38 +1,4 @@
-const WHY_CHOOSE_ITEMS = [
-  {
-    icon: '/assets/images/icon-why-choose-us1.svg',
-    title: 'Residential Renovation',
-    description:
-      'Residential renovation is transformative process that breathes new life into home enhancing both its functionality and aesthetic appeal single room',
-  },
-  {
-    icon: '/assets/images/icon-why-choose-us2.svg',
-    title: 'Design & Planning',
-    description:
-      'Design & Planning is the foundation of any successful renovation or construction project It involves turning ideas into practical well structured solutions',
-  },
-  {
-    icon: '/assets/images/icon-why-choose-us3.svg',
-    title: 'Turnkey Renovation',
-    description:
-      'Turnkey renovation offers a complete hassle free solution for transforming space from start to finish from initial design and planning to final execution',
-  },
-];
-
-const PROGRESS_BLOCKS = [
-  {
-    label: 'Professional Workers',
-    percent: 90,
-    image: '/assets/images/why-choose-us1.jpg',
-    imageFirst: true,
-  },
-  {
-    label: 'Paint Spraying',
-    percent: 80,
-    image: '/assets/images/why-choose-us2.jpg',
-    imageFirst: false,
-  },
-];
+import { useI18n } from '../i18n/I18nProvider';
 
 const IMAGE_WRAPPER_STYLE = {
   position: 'relative',
@@ -53,23 +19,39 @@ const IMAGE_STYLE = {
 };
 
 export default function WhyChooseUs() {
+  const { t } = useI18n();
+  const items = t<{ title: string; description: string }[]>('whyChoose.items', []);
+  const progress = t<{ label: string; percent: number }[]>('whyChoose.progress', []);
+  const blocks = [
+    {
+      image: '/assets/images/why-choose-us1.jpg',
+      imageFirst: true,
+      ...progress[0],
+    },
+    {
+      image: '/assets/images/why-choose-us2.jpg',
+      imageFirst: false,
+      ...progress[1],
+    },
+  ].filter((block) => block.label);
+
   return (
     <>
       <div className="why-choose-us-area ptb-120">
         <div className="container mw-1690">
           <div className="mb-50 mt-0 text-center">
-            <span className="top-title">why choose us</span>
+            <span className="top-title">{t('whyChoose.topTitle')}</span>
             <h2 className="main-title mx-auto mw-550">
-              Why Choose Renovia For Your Remodeling Services
+              {t('whyChoose.title')}
             </h2>
           </div>
           <div className="row g-4 align-items-center">
             <div className="col-xl-6">
-              {WHY_CHOOSE_ITEMS.map((item) => (
-                <div className="why-choose-us-content-item" key={item.title}>
+              {items.map((item, index) => (
+                <div className="why-choose-us-content-item" key={`${item.title}-${index}`}>
                   <div className="d-flex align-items-center mb-30 mt-0 gap-30">
                     <div className="flex-shrink-0">
-                      <img src={item.icon} alt="icon-why-choose-us" />
+                      <img src={`/assets/images/icon-why-choose-us${index + 1}.svg`} alt="icon-why-choose-us" />
                     </div>
                     <div className="flex-grow-1">
                       <h3 className="mb-0">{item.title}</h3>
@@ -82,8 +64,8 @@ export default function WhyChooseUs() {
             <div className="col-xl-6">
               <div className="why-choose-us-img-wrap">
                 <div className="row g-30 g-4">
-                  {PROGRESS_BLOCKS.map((block, index) => (
-                    <div className="col-md-6" key={block.label}>
+                  {blocks.map((block, index) => (
+                    <div className="col-md-6" key={`${block.label}-${index}`}>
                       <div className="why-choose-us-img">
                         {block.imageFirst ? (
                           <div className="mb-30">

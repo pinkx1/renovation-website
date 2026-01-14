@@ -354,6 +354,7 @@
 		smoothTouch: false,
 	});
 
+
 	// animate
 	function raf(time) {
 		parallax.animate();

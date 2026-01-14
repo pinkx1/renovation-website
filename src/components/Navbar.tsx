@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useI18n } from '../i18n/I18nProvider';
 
 type NavLink = {
   label: string;
@@ -6,16 +7,19 @@ type NavLink = {
 };
 
 const NAV_LINKS: NavLink[] = [
-  { label: 'About Us', to: '/about-us' },
-  { label: 'Testimonials', to: '/testimonials' },
-  { label: 'FAQs', to: '/faqs' },
-  { label: 'Pricing', to: '/pricing' },
-  { label: 'Projects', to: '/projects' },
-  { label: 'Blog', to: '/blog' },
-  { label: 'Contact Us', to: '/contact-us' },
+  { label: 'nav.about', to: '/about-us' },
+  { label: 'nav.testimonials', to: '/testimonials' },
+  { label: 'nav.faqs', to: '/faqs' },
+  { label: 'nav.pricing', to: '/pricing' },
+  { label: 'nav.projects', to: '/projects' },
+  { label: 'nav.blog', to: '/blog' },
+  { label: 'nav.contact', to: '/contact-us' },
 ];
 
 export default function Navbar() {
+  const { t } = useI18n();
+  const company = t<{ phone: string }>('company', { phone: '' });
+  const phoneHref = company.phone.replace(/[^\d+]/g, '');
   const location = useLocation();
   const isHome = location.pathname === '/';
 
@@ -50,7 +54,7 @@ export default function Navbar() {
                       {NAV_LINKS.map((item) => (
                         <li className="nav-item" key={item.label}>
                           <Link className="nav-link" to={item.to}>
-                            {item.label}
+                            {t(item.label)}
                           </Link>
                         </li>
                       ))}
@@ -58,9 +62,14 @@ export default function Navbar() {
               </div>
               <div className="others-options d-flex align-items-center gap-4">
                   <div className="gap-40 d-flex">
-                      <a href="tel:+001(808)5550148" className="d-sm-inline-flex d-none align-items-center gap-10 text-decoration-none fw-medium call button">
+                      <a
+                        href={`tel:${phoneHref}`}
+                        className="d-sm-inline-flex d-none align-items-center gap-10 text-decoration-none fw-medium call button"
+                      >
                           <img src="/assets/images/head-phone.svg" alt="head-phon" />
-                          <span className="text-secondary d-none d-md-inline-block d-lg-none d-xxl-inline-block">+001 (808) 5550148</span>
+                          <span className="text-secondary d-none d-md-inline-block d-lg-none d-xxl-inline-block">
+                            {company.phone}
+                          </span>
                       </a>
                       <button className="bg-transparent border-0 p-0 button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                           <img src="/assets/images/icon-search.svg" alt="icon-search" />
@@ -68,7 +77,7 @@ export default function Navbar() {
                   </div>
                   <Link to="/request-a-quote" className="default-btn d-none d-sm-inline-block">
                       <div className="d-flex align-items-center gap-10">
-                          <span className="d-none d-sm-inline-block">Get Free Quote</span>
+                          <span className="d-none d-sm-inline-block">{t('buttons.getFreeQuote')}</span>
                           <img src="/assets/images/icon-right-arrow.svg" alt="icon-right-arrow" />
                       </div>
                   </Link>

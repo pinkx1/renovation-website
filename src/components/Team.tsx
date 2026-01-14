@@ -1,27 +1,4 @@
-const TEAM_MEMBERS = [
-  {
-    name: 'Robert Pineda',
-    role: 'Paint Consultant',
-    photo: '/assets/images/team5.jpg',
-  },
-  {
-    name: 'Lori Sheffield',
-    role: 'Detail Painter',
-    photo: '/assets/images/team6.jpg',
-  },
-  {
-    name: 'David Chadwell',
-    role: 'Surface Specialist',
-    photo: '/assets/images/team7.jpg',
-  },
-  {
-    name: 'Miriam Sherburn',
-    role: 'Lead Painter',
-    photo: '/assets/images/team8.jpg',
-  },
-];
-
-const TEAM_SLIDES = [...TEAM_MEMBERS, ...TEAM_MEMBERS];
+import { useI18n } from '../i18n/I18nProvider';
 
 const TEAM_SOCIALS = [
   { href: 'https://www.facebook.com/', icon: 'ti ti-brand-facebook', label: 'Facebook' },
@@ -31,19 +8,29 @@ const TEAM_SOCIALS = [
 ];
 
 export default function Team() {
+  const { t } = useI18n();
+  const members = t<{ name: string; role: string }[]>('teamHome.members', []);
+  const teamMembers = [
+    { photo: '/assets/images/team5.jpg', ...members[0] },
+    { photo: '/assets/images/team6.jpg', ...members[1] },
+    { photo: '/assets/images/team7.jpg', ...members[2] },
+    { photo: '/assets/images/team8.jpg', ...members[3] },
+  ].filter((member) => member.name);
+  const teamSlides = [...teamMembers, ...teamMembers];
+
   return (
     <>
       <div className="team-area ptb-120">
         <div className="container mw-1690">
           <div className="mb-50 mt-0 text-center">
-            <span className="top-title">Team Members</span>
+            <span className="top-title">{t('teamHome.topTitle')}</span>
             <h2 className="main-title mx-auto mw-550">
-              The Team Responsible For Remodeling Projects
+              {t('teamHome.title')}
             </h2>
           </div>
           <div className="swiper team-slide">
             <div className="swiper-wrapper">
-              {TEAM_SLIDES.map((member, index) => (
+              {teamSlides.map((member, index) => (
                 <div className="swiper-slide" key={`${member.name}-${index}`}>
                   <div className="team-single-item">
                     <img src={member.photo} alt="team" />

@@ -1,3 +1,5 @@
+import { useI18n } from '../i18n/I18nProvider';
+
 const PARTNER_LOGOS = [
   '/assets/images/partner7.png',
   '/assets/images/partner8.png',
@@ -10,12 +12,14 @@ const PARTNER_LOGOS = [
 const PARTNER_SLIDES = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
 
 export default function Partners() {
+  const { t } = useI18n();
+
   return (
     <>
       <div className="partners-area pb-120">
         <div className="container mw-1690">
           <span className="partner-title mb-60 text-secondary">
-            SPECIAL THANKS TO ALL OUT PARTNERS
+            {t('partners.title')}
           </span>
           <div className="swiper partner-slide text-center">
             <div className="swiper-wrapper align-items-center">

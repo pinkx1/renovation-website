@@ -107,6 +107,7 @@ export default function AboutUsPage() {
                         <img
                           src="/assets/images/get-to-know1.jpg"
                           className="ukiyo"
+                          data-u-scale="1.2"
                           alt="get-to-know"
                           style={IMAGE_ONE_IMG_STYLE}
                         />
@@ -146,6 +147,7 @@ export default function AboutUsPage() {
                         <img
                           src="/assets/images/get-to-know2.jpg"
                           className="ukiyo"
+                          data-u-scale="1.2"
                           alt="get-to-know"
                           style={IMAGE_TWO_IMG_STYLE}
                         />

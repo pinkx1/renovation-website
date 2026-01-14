@@ -37,9 +37,8 @@ export default function PricingPage() {
     <>
       <div className="pricing-area ptb-120">
         <div className="container mw-1690">
-          <div className="text-center mb-60 mt-0">
-            <span className="top-title">{t('pricingPage.topTitle')}</span>
-            <h2 className="main-title mx-auto mw-620">{t('pricingPage.title')}</h2>
+          <div className="text-start mb-60 mt-0">
+            <h2 className="main-title pricing-title">{t('pricingPage.title')}</h2>
           </div>
 
           <div className="row g-4 justify-content-center">

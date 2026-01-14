@@ -45,14 +45,11 @@ export default function FaqsPage() {
           <div className="row g-4">
             <div className="col-lg-6">
               <div className="faq-content">
-                <div className="mb-50 mt-0" data-cues="slideInUp" data-duration="900" data-disabled="true">
-                  <span className="top-title" data-cue="slideInUp" data-duration="900">
-                    {t('faqsPage.topTitle')}
-                  </span>
-                  <h2 className="main-title" data-cue="slideInUp" data-duration="900">
+                <div className="mb-50 mt-0">
+                  <h2 className="main-title">
                     {t('faqsPage.title')}
                   </h2>
-                  <p data-cue="slideInUp" data-duration="900">
+                  <p>
                     {t('faqsPage.description')}
                   </p>
                 </div>
@@ -85,18 +82,10 @@ export default function FaqsPage() {
               </div>
             </div>
             <div className="col-lg-6">
-              <div
-                className="accordion faq-wrapper"
-                id="accordionExample"
-                data-cues="slideInUp"
-                data-duration="900"
-                data-disabled="true"
-              >
+              <div className="accordion faq-wrapper" id="accordionExample">
                 {faqs.map((item, index) => (
                   <div
                     className="accordion-item bg-gray2"
-                    data-cue="slideInUp"
-                    data-duration="900"
                     key={item.question}
                   >
                     <h2 className="accordion-header">
@@ -132,7 +121,6 @@ export default function FaqsPage() {
       <div className="contact-us-area pb-120">
         <div className="container mw-1690">
           <div className="mb-50 text-center">
-            <span className="top-title">{t('faqsPage.formTitle')}</span>
             <h2 className="main-title mx-auto">{t('faqsPage.formHeading')}</h2>
           </div>
 

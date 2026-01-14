@@ -66,7 +66,7 @@ export default function ContactUsPage() {
         <div className="container-fluid p-0">
           <iframe
             src="https://www.openstreetmap.org/export/embed.html?bbox=37.6044%2C55.7472%2C37.63%2C55.7647&layer=mapnik&marker=55.7558%2C37.6173"
-            style={{ border: 0, width: '100%', height: '650px' }}
+            style={{ border: 0, width: '100%', height: '520px' }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

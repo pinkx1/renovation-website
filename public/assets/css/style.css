@@ -12467,8 +12467,8 @@ textarea.form-control {
 }
 
 .ptb-120 {
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .pt-120 {
@@ -19052,6 +19052,10 @@ Page-navigation Area Style
 .pricing-single-item ul li i {
   color: #008000;
   font-size: 18px;
+}
+
+.pricing-title {
+  white-space: nowrap;
 }
 
 /* Max width 767px */

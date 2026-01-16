@@ -19084,6 +19084,19 @@ Page-navigation Area Style
   white-space: nowrap;
 }
 
+.request-quote-modal .modal-content {
+  border-radius: 20px;
+  border: 0;
+}
+
+.request-quote-modal .modal-header {
+  padding: 30px 40px 0;
+}
+
+.request-quote-modal .modal-body {
+  padding: 20px 40px 40px;
+}
+
 /* Max width 767px */
 @media only screen and (max-width: 767px) {
   .pricing-single-item {

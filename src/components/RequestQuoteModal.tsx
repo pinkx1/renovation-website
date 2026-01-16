@@ -22,7 +22,7 @@ export default function RequestQuoteModal() {
 
   return (
     <div
-      className="modal fade"
+      className="modal fade request-quote-modal"
       id="requestQuoteModal"
       tabIndex={-1}
       aria-labelledby="requestQuoteModalLabel"
@@ -42,27 +42,27 @@ export default function RequestQuoteModal() {
             ></button>
           </div>
           <div className="modal-body pt-0">
-            <div className="contact-us-from mx-0">
+            <div className="contact-us-from bg-gray2 mx-0">
               <form>
                 <div className="row">
                   <div className="col-md-6">
                     <div className="form-group mb-20">
-                      <input type="text" className="form-control" placeholder={placeholders.name} />
+                      <input type="text" className="form-control border-0" placeholder={placeholders.name} />
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className="form-group mb-20">
-                      <input type="email" className="form-control" placeholder={placeholders.email} />
+                      <input type="email" className="form-control border-0" placeholder={placeholders.email} />
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className="form-group mb-20">
-                      <input type="number" className="form-control" placeholder={placeholders.phone} />
+                      <input type="number" className="form-control border-0" placeholder={placeholders.phone} />
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className="form-group mb-20">
-                      <select className="form-select form-control" aria-label="Default select example" defaultValue="">
+                      <select className="form-select form-control border-0" aria-label="Default select example" defaultValue="">
                         <option value="">{placeholders.category}</option>
                         {categories.map((category) => (
                           <option key={category} value={category.toLowerCase().replace(/\s+/g, '-')}>
@@ -74,7 +74,7 @@ export default function RequestQuoteModal() {
                   </div>
                   <div className="col-lg-12">
                     <div className="form-group mb-20">
-                      <select className="form-select form-control" aria-label="Default select example" defaultValue="">
+                      <select className="form-select form-control border-0" aria-label="Default select example" defaultValue="">
                         <option value="">{placeholders.location}</option>
                         {locations.map((location) => (
                           <option key={location} value={location.toLowerCase().replace(/\s+/g, '-')}>
@@ -86,7 +86,7 @@ export default function RequestQuoteModal() {
                   </div>
                   <div className="col-lg-12">
                     <div className="form-group mb-20">
-                      <textarea rows={4} className="form-control" placeholder={placeholders.message}></textarea>
+                      <textarea rows={4} className="form-control border-0" placeholder={placeholders.message}></textarea>
                     </div>
                   </div>
                   <div className="col-lg-12">

@@ -19084,18 +19084,47 @@ Page-navigation Area Style
   white-space: nowrap;
 }
 
-.request-quote-modal .modal-content {
-  border-radius: 20px;
-  border: 0;
+.request-quote-modal-dialog .modal-content {
+  background-color: #fff;
 }
 
-.request-quote-modal .modal-header {
-  padding: 30px 40px 0;
+.request-quote-modal-dialog .modal-body {
+  padding: 16px;
 }
 
-.request-quote-modal .modal-body {
-  padding: 20px 40px 40px;
+.request-quote-form {
+  padding: 24px;
+  background-color: #fff;
+  width: 100%;
 }
+
+.request-quote-modal-dialog {
+  max-width: 560px;
+}
+
+.request-quote-form .form-control,
+.request-quote-form .form-select {
+  height: 40px;
+  font-size: 12px;
+}
+
+.request-quote-form textarea.form-control {
+  height: auto;
+}
+
+.request-quote-form .main-title {
+  font-size: 24px;
+}
+
+.request-quote-form .form-control::placeholder,
+.request-quote-form .form-select::placeholder {
+  font-size: 12px;
+}
+
+.request-quote-form .mb-20 {
+  margin-bottom: 12px;
+}
+
 
 /* Max width 767px */
 @media only screen and (max-width: 767px) {

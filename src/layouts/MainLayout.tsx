@@ -6,6 +6,7 @@ import HeaderTop from '../components/HeaderTop';
 import MobileNavbar from '../components/MobileNavbar';
 import Navbar from '../components/Navbar';
 import Preloader from '../components/Preloader';
+import RequestQuoteModal from '../components/RequestQuoteModal';
 import SearchModal from '../components/SearchModal';
 import SidebarInfo from '../components/SidebarInfo';
 import useTemplateScripts from '../hooks/useTemplateScripts';
@@ -21,6 +22,7 @@ export default function MainLayout() {
       <MobileNavbar />
       <SidebarInfo />
       <SearchModal />
+      <RequestQuoteModal />
 
       <Outlet />
 

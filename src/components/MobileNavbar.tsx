@@ -71,12 +71,18 @@ export default function MobileNavbar() {
                           <span className="text-secondary">{company.phone}</span>
                       </a>
                   </div>
-                  <Link to="/request-a-quote" className="default-btn">
+                  <button
+                    type="button"
+                    className="default-btn border-0"
+                    data-bs-toggle="modal"
+                    data-bs-target="#requestQuoteModal"
+                    data-bs-dismiss="offcanvas"
+                  >
                       <div className="d-flex align-items-center gap-10">
                           {t('buttons.getFreeQuote')}
                           <img src="/assets/images/icon-right-arrow.svg" alt="icon-right-arrow" />
                       </div>
-                  </Link>
+                  </button>
               </div>
           </div>
       </div>

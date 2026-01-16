@@ -75,12 +75,17 @@ export default function Navbar() {
                           <img src="/assets/images/icon-search.svg" alt="icon-search" />
                       </button>
                   </div>
-                  <Link to="/request-a-quote" className="default-btn d-none d-sm-inline-block">
+                  <button
+                    type="button"
+                    className="default-btn d-none d-sm-inline-block border-0"
+                    data-bs-toggle="modal"
+                    data-bs-target="#requestQuoteModal"
+                  >
                       <div className="d-flex align-items-center gap-10">
                           <span className="d-none d-sm-inline-block">{t('buttons.getFreeQuote')}</span>
                           <img src="/assets/images/icon-right-arrow.svg" alt="icon-right-arrow" />
                       </div>
-                  </Link>
+                  </button>
                   <a className="navbar-toggler" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
                       <span className="burger-menu">
                           <span className="top-bar"></span>

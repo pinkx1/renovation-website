@@ -19058,6 +19058,32 @@ Page-navigation Area Style
   white-space: nowrap;
 }
 
+.services-title {
+  white-space: nowrap;
+}
+
+.get-to-know-us-area.pt-120 {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.projects-area.pt-120 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.why-choose-title {
+  white-space: nowrap;
+}
+
+.blog-title {
+  white-space: nowrap;
+}
+
+.faq-form-title {
+  white-space: nowrap;
+}
+
 /* Max width 767px */
 @media only screen and (max-width: 767px) {
   .pricing-single-item {

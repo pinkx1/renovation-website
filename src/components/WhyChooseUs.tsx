@@ -39,9 +39,8 @@ export default function WhyChooseUs() {
     <>
       <div className="why-choose-us-area ptb-120">
         <div className="container mw-1690">
-          <div className="mb-50 mt-0 text-center">
-            <span className="top-title">{t('whyChoose.topTitle')}</span>
-            <h2 className="main-title mx-auto mw-550">
+          <div className="mb-50 mt-0 text-start">
+            <h2 className="main-title why-choose-title">
               {t('whyChoose.title')}
             </h2>
           </div>

@@ -72,12 +72,11 @@ export default function Services() {
         style={{ backgroundImage: 'url(/assets/images/banner-bg.jpg)' }}
       >
         <div className="container mw-1690">
-          <div className="mb-50 mt-0 text-center">
-            <span className="top-title">{t('servicesHome.topTitle')}</span>
-            <h2 className="main-title mx-auto mw-550">{t('servicesHome.title')}</h2>
+          <div className="mb-50 mt-0 text-start">
+            <h2 className="main-title mw-550 services-title">{t('servicesHome.title')}</h2>
           </div>
           <div className="row align-items-center g-4">
-            <div className="col-xl-4">
+            <div className="col-xl-4 mt-0">
               <div
                 className="nav flex-column nav-pills services-tabs"
                 id="v-pills-tab"
@@ -116,7 +115,7 @@ export default function Services() {
                 })}
               </div>
             </div>
-            <div className="col-xl-8">
+            <div className="col-xl-8 mt-0">
               <div className="tab-content" id="v-pills-tabContent">
                 {serviceTabs.map((item, index) => {
                   const isActive = index === 0;

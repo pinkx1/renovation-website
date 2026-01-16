@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Partners from '../components/Partners';
 import Subscribe from '../components/Subscribe';
 import Team from '../components/Team';
 import WhyChooseUs from '../components/WhyChooseUs';
@@ -160,7 +159,6 @@ export default function AboutUsPage() {
             <div className="col-xxl-5">
               <div className="get-to-know-us-content">
                 <div className="mb-40 mt-0">
-                  <span className="top-title">{t('aboutPage.getToKnowTitle')}</span>
                   <h2 className="main-title">{t('aboutPage.getToKnowHeading')}</h2>
                   <p>{t('aboutPage.getToKnowText')}</p>
                 </div>
@@ -198,18 +196,13 @@ export default function AboutUsPage() {
         </div>
       </div>
 
-      <Partners />
-
       <div
         className="working-process-area ptb-120 bg-img"
         style={{ backgroundImage: 'url(/assets/images/banner-bg.jpg)' }}
       >
         <div className="container mw-1690">
-          <div className="text-center mb-40 mt-0" data-cues="slideInUp" data-duration="900" data-disabled="true">
-            <span className="top-title" data-cue="slideInUp" data-duration="900">
-              {t('aboutPage.workingProcessTop')}
-            </span>
-            <h2 className="main-title mx-auto mw-100" data-cue="slideInUp" data-duration="900">
+          <div className="text-start mb-40 mt-0" data-cues="slideInUp" data-duration="900" data-disabled="true">
+            <h2 className="main-title mw-100" data-cue="slideInUp" data-duration="900">
               {t('aboutPage.workingProcessTitle')}
             </h2>
           </div>
@@ -262,7 +255,6 @@ export default function AboutUsPage() {
               <div className="ptb-120">
                 <div className="testimonial-content-wrap">
                   <div className="mb-30 mt-0">
-                    <span className="top-title">{t('aboutPage.testimonialTop')}</span>
                     <h2 className="main-title mw-100">{t('aboutPage.testimonialTitle')}</h2>
                   </div>
 

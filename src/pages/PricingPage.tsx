@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Subscribe from '../components/Subscribe';
 import { useI18n } from '../i18n/I18nProvider';
 
 export default function PricingPage() {
@@ -80,7 +79,6 @@ export default function PricingPage() {
       <div className="marquee-wrapper monogram-wrap pb-120">
         <div className="marquee speed-300">{marqueeNodes}</div>
       </div>
-      <Subscribe />
     </>
   );
 }

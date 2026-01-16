@@ -26,22 +26,13 @@ export default function Blog() {
       <div className="blog-area ptb-120">
         <div className="container mw-1690">
           <div
-            className="text-center mb-50"
+            className="text-start mb-50"
             data-cues="slideInUp"
             data-duration="900"
             data-disabled="true"
           >
-            <span
-              className="top-title"
-              data-cue="slideInUp"
-              data-duration="900"
-              data-show="true"
-              style={baseAnimationStyle(0)}
-            >
-              {t('blogHome.topTitle')}
-            </span>
             <h2
-              className="main-title mx-auto mw-620"
+              className="main-title mw-620 blog-title"
               data-cue="slideInUp"
               data-duration="900"
               data-show="true"

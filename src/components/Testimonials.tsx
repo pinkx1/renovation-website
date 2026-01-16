@@ -22,7 +22,6 @@ export default function Testimonials() {
         <div className="container mw-1690">
           <div className="d-flex flex-wrap gap-20 justify-content-between align-items-center mb-50 mt-0">
             <div>
-              <span className="top-title two text-white">{t('testimonialsHome.topTitle')}</span>
               <h2 className="main-title text-white mw-720">
                 {t('testimonialsHome.title')}
               </h2>

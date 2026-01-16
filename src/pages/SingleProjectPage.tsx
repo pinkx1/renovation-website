@@ -173,30 +173,6 @@ export default function SingleProjectPage() {
                   </div>
                 </div>
 
-                <div className="sidebar-widget bg-gray2">
-                  <h3>{singleProject.scheduleProject}</h3>
-                  <form>
-                    <div className="mb-4">
-                      <input type="text" className="form-control" placeholder={singleProject.schedulePlaceholders.name} />
-                    </div>
-                    <div className="mb-4">
-                      <input type="email" className="form-control" placeholder={singleProject.schedulePlaceholders.email} />
-                    </div>
-                    <div className="mb-4">
-                      <textarea
-                        className="form-control"
-                        placeholder={singleProject.schedulePlaceholders.message}
-                        rows={5}
-                      ></textarea>
-                    </div>
-                    <button type="submit" className="default-btn border-0">
-                      <span>
-                        {t('common.contactNow')}
-                        <img src="/assets/images/icon-right-arrow.svg" alt="icon-right-arrow" />
-                      </span>
-                    </button>
-                  </form>
-                </div>
               </div>
             </div>
           </div>

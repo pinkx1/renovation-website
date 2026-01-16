@@ -191,7 +191,7 @@ export const translations: Record<Language, Record<string, unknown>> = {
     },
     projectsHome: {
       topTitle: 'Latest Projects',
-      title: 'We Believe In Quality Projects And More Meaningful Moments',
+      title: 'Latest projects',
       items: [
         { title: 'Custom Home Renovations', category: 'home renovation' },
         { title: 'Kitchen Remodeling', category: 'home renovation' },
@@ -246,7 +246,7 @@ export const translations: Record<Language, Record<string, unknown>> = {
     },
     teamHome: {
       topTitle: 'Team Members',
-      title: 'The Team Responsible For Remodeling Projects',
+      title: 'Our team',
       members: [
         { name: 'Robert Pineda', role: 'Paint Consultant' },
         { name: 'Lori Sheffield', role: 'Detail Painter' },
@@ -366,7 +366,7 @@ export const translations: Record<Language, Record<string, unknown>> = {
         },
       ],
       workingProcessTop: 'working process',
-      workingProcessTitle: 'Our Step By Step Painting Process',
+      workingProcessTitle: 'How we work',
       workingSteps: [
         {
           title: 'Get A quote',
@@ -1013,7 +1013,7 @@ export const translations: Record<Language, Record<string, unknown>> = {
       topTitle: 'добро пожаловать в renovia',
       title: 'Ремонт и реконструкция в Москве',
       description:
-        'Ремонт — это лучший способ обновить пространство: от одной комнаты до всего объекта. Мы улучшаем функциональность, эстетику и комфорт.',
+        'Ремонт — лучший способ обновить пространство: от одной комнаты до всего объекта. Мы улучшаем функциональность, эстетику и комфорт.',
       buttons: {
         explore: 'Наши услуги',
         learn: 'Узнать больше',
@@ -1026,7 +1026,7 @@ export const translations: Record<Language, Record<string, unknown>> = {
     },
     whatWeDo: {
       topTitle: 'что мы делаем',
-      title: 'Надежная команда по ремонту и отделке',
+      title: 'Что мы делаем',
       items: [
         {
           title: 'Ремонт квартир',
@@ -1119,7 +1119,7 @@ export const translations: Record<Language, Record<string, unknown>> = {
     },
     projectsHome: {
       topTitle: 'Последние проекты',
-      title: 'Качество, которое видно в каждом проекте',
+      title: 'Последние проекты',
       items: [
         { title: 'Комплексный ремонт дома', category: 'ремонт дома' },
         { title: 'Ремонт кухни', category: 'ремонт дома' },
@@ -1174,7 +1174,7 @@ export const translations: Record<Language, Record<string, unknown>> = {
     },
     teamHome: {
       topTitle: 'Команда',
-      title: 'Люди, которые делают ремонт качественно',
+      title: 'Наша команда',
       members: [
         { name: 'Сергей Романов', role: 'Консультант по отделке' },
         { name: 'Алексей Смирнов', role: 'Мастер по деталям' },
@@ -1294,7 +1294,7 @@ export const translations: Record<Language, Record<string, unknown>> = {
         },
       ],
       workingProcessTop: 'как мы работаем',
-      workingProcessTitle: 'Пошаговый процесс ремонта',
+      workingProcessTitle: 'Как мы работаем',
       workingSteps: [
         {
           title: 'Запрос сметы',

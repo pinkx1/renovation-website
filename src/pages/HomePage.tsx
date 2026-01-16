@@ -5,10 +5,7 @@ import Services from '../components/Services';
 import Projects from '../components/Projects';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Testimonials from '../components/Testimonials';
-import Team from '../components/Team';
-import Partners from '../components/Partners';
 import ContactUs from '../components/ContactUs';
-import FunFact from '../components/FunFact';
 import Blog from '../components/Blog';
 import Consultation from '../components/Consultation';
 
@@ -22,10 +19,7 @@ export default function HomePage() {
       <Projects />
       <WhyChooseUs />
       <Testimonials />
-      <Team />
-      <Partners />
       <ContactUs />
-      <FunFact />
       <Blog />
       <Consultation />
     </>

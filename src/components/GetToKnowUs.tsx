@@ -39,7 +39,6 @@ export default function GetToKnowUs() {
               <div className="row g-4">
                   <div className="col-xl-4 col-lg-6">
                       <div className="mb-50 mt-0">
-                          <span className="top-title">{t('getToKnow.topTitle')}</span>
                           <h2 className="main-title mw-720">{t('getToKnow.title')}</h2>
                           <p>{t('getToKnow.description')}</p>
                       </div>
@@ -122,11 +121,6 @@ export default function GetToKnowUs() {
               </div>
           </div>
       </div>
-    <div className="marquee-wrapper monogram-wrap ptb-120">
-        <div className="marquee speed-300 style-two">
-            {marqueeNodes}
-        </div>
-    </div>
     </>
   );
 }

@@ -14,7 +14,6 @@ export default function ContactUs() {
                   <div className="col-lg-6">
                       <div className="contact-us-content">
                           <div className="mb-50">
-                              <span className="top-title">{t('contactSection.topTitle')}</span>
                               <h2 className="main-title ms-0 mw-100">{t('contactSection.title')}</h2>
                               <p>{t('contactSection.description')}</p>
                           </div>

@@ -9,7 +9,6 @@ export default function WhatWeDo() {
       <div className="what-we-do-area bg-secondary ptb-120">
           <div className="container mw-1690">
               <div className="mb-50 mt-0 text-center">
-                  <span className="top-title text-white two">{t('whatWeDo.topTitle')}</span>
                   <h2 className="main-title text-white mx-auto mw-720">{t('whatWeDo.title')}</h2>
               </div>
               <div className="row g-4 justify-content-center mb-60">

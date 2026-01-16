@@ -22,9 +22,8 @@ export default function Team() {
     <>
       <div className="team-area ptb-120">
         <div className="container mw-1690">
-          <div className="mb-50 mt-0 text-center">
-            <span className="top-title">{t('teamHome.topTitle')}</span>
-            <h2 className="main-title mx-auto mw-550">
+          <div className="mb-50 mt-0 text-start">
+            <h2 className="main-title mw-550">
               {t('teamHome.title')}
             </h2>
           </div>

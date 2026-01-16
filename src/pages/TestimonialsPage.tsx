@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Subscribe from '../components/Subscribe';
 import { useI18n } from '../i18n/I18nProvider';
 
 export default function TestimonialsPage() {
@@ -64,7 +63,6 @@ export default function TestimonialsPage() {
           </div>
         </div>
       </div>
-      <Subscribe />
     </>
   );
 }

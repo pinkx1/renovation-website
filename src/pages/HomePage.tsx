@@ -6,28 +6,28 @@ import Projects from '../components/Projects';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Testimonials from '../components/Testimonials';
 import Team from '../components/Team';
-import Partners from '../components/Partners';
 import ContactUs from '../components/ContactUs';
-import FunFact from '../components/FunFact';
 import Blog from '../components/Blog';
 import Consultation from '../components/Consultation';
+import { useI18n } from '../i18n/I18nProvider';
 
 export default function HomePage() {
+  const { language } = useI18n();
+  const teamTitle = language === 'ru' ? '\u041d\u0430\u0448\u0430 \u043a\u043e\u043c\u0430\u043d\u0434\u0430' : 'Our Team';
+
   return (
-    <>
+    <div className="home-page">
       <Banner />
       <WhatWeDo />
       <GetToKnowUs />
       <Services />
       <Projects />
-      <WhyChooseUs />
+      <WhyChooseUs showTopTitle={false} />
       <Testimonials />
-      <Team />
-      <Partners />
+      <Team showTopTitle={false} titleOverride={teamTitle} />
       <ContactUs />
-      <FunFact />
       <Blog />
       <Consultation />
-    </>
+    </div>
   );
 }

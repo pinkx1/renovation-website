@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import Partners from '../components/Partners';
 import Subscribe from '../components/Subscribe';
 import Team from '../components/Team';
@@ -23,7 +22,7 @@ const IMAGE_ONE_STYLE = {
 const IMAGE_ONE_IMG_STYLE = {
   display: 'block',
   overflow: 'hidden',
-  backfaceVisibility: 'hidden',
+  backfaceVisibility: 'hidden' as const,
   objectFit: 'cover' as const,
   objectPosition: 'top',
   width: '439px',
@@ -42,7 +41,7 @@ const IMAGE_TWO_STYLE = {
 const IMAGE_TWO_IMG_STYLE = {
   display: 'block',
   overflow: 'hidden',
-  backfaceVisibility: 'hidden',
+  backfaceVisibility: 'hidden' as const,
   objectFit: 'cover' as const,
   objectPosition: 'top',
   width: '439px',
@@ -59,7 +58,7 @@ const TESTIMONIAL_IMAGE_STYLE = {
 const TESTIMONIAL_IMAGE_INNER_STYLE = {
   display: 'block',
   overflow: 'hidden',
-  backfaceVisibility: 'hidden',
+  backfaceVisibility: 'hidden' as const,
   objectFit: 'cover' as const,
   width: '800px',
   height: '1035px',

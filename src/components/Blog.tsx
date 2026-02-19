@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useI18n } from '../i18n/I18nProvider';
+import { buildBlogCards } from '../data/contentCatalog';
 
 const baseAnimationStyle = (delay: number) => ({
   animationName: 'slideInUp',
@@ -15,11 +16,10 @@ export default function Blog() {
   const posts = t<
     { tag: string; date: string; comments: string; title: string; excerpt: string }[]
   >('blogHome.posts', []);
-  const blogPosts = [
-    { image: '/assets/images/blog5.jpg', delay: 0, ...posts[0] },
-    { image: '/assets/images/blog6.jpg', delay: 270, ...posts[1] },
-    { image: '/assets/images/blog7.jpg', delay: 540, ...posts[2] },
-  ].filter((post) => post.title);
+  const blogPosts = buildBlogCards(posts).map((post, index) => ({
+    ...post,
+    delay: index * 270,
+  }));
 
   return (
     <>
@@ -31,15 +31,6 @@ export default function Blog() {
             data-duration="900"
             data-disabled="true"
           >
-            <span
-              className="top-title"
-              data-cue="slideInUp"
-              data-duration="900"
-              data-show="true"
-              style={baseAnimationStyle(0)}
-            >
-              {t('blogHome.topTitle')}
-            </span>
             <h2
               className="main-title mx-auto mw-620"
               data-cue="slideInUp"
@@ -66,7 +57,7 @@ export default function Blog() {
                 key={post.title}
               >
                 <Link
-                  to="/single-blog"
+                  to={`/blog/${post.id}`}
                   className="blog-single-item style-two d-block text-decoration-none bg-transparent"
                 >
                   <div className="blog-imgs">

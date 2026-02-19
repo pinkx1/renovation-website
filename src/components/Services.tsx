@@ -15,18 +15,18 @@ export default function Services() {
         alt: 'services',
         className: 'img h-100 object-fit-cover ukiyo',
         wrapperStyle: {
-          position: 'relative',
+          position: 'relative' as const,
           width: '495px',
           overflow: 'hidden',
           borderRadius: '15px',
-          isolation: 'isolate',
+          isolation: 'isolate' as const,
           height: '376px',
         },
         imageStyle: {
           display: 'block',
           overflow: 'hidden',
-          backfaceVisibility: 'hidden',
-          objectFit: 'cover',
+          backfaceVisibility: 'hidden' as const,
+          objectFit: 'cover' as const,
           width: '495px',
           height: '564px',
         },
@@ -73,7 +73,6 @@ export default function Services() {
       >
         <div className="container mw-1690">
           <div className="mb-50 mt-0 text-center">
-            <span className="top-title">{t('servicesHome.topTitle')}</span>
             <h2 className="main-title mx-auto mw-550">{t('servicesHome.title')}</h2>
           </div>
           <div className="row align-items-center g-4">

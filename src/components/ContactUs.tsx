@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import { useI18n } from '../i18n/I18nProvider';
 
 export default function ContactUs() {
-  const { t } = useI18n();
+  const { t, language } = useI18n();
   const company = t<{ phone: string }>('company', { phone: '' });
   const phoneHref = company.phone.replace(/[^\d+]/g, '');
+  const sectionTitle = language === 'ru' ? '\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b' : 'Contacts';
 
   return (
     <>
@@ -14,8 +15,7 @@ export default function ContactUs() {
                   <div className="col-lg-6">
                       <div className="contact-us-content">
                           <div className="mb-50">
-                              <span className="top-title">{t('contactSection.topTitle')}</span>
-                              <h2 className="main-title ms-0 mw-100">{t('contactSection.title')}</h2>
+                              <h2 className="main-title ms-0 mw-100">{sectionTitle}</h2>
                               <p>{t('contactSection.description')}</p>
                           </div>
                           <div className="contact-us-img">
@@ -52,7 +52,7 @@ export default function ContactUs() {
                                   <input type="number" className="form-control" placeholder={t('contactSection.placeholders.phone')} />
                               </div>
                               <div className="form-group mb-20">
-                                  <textarea rows="5" className="form-control" placeholder={t('contactSection.placeholders.message')}></textarea>
+                                  <textarea rows={5} className="form-control" placeholder={t('contactSection.placeholders.message')}></textarea>
                               </div>
                               <div className="form-group mb-20">
                                   <div className="form-check">

@@ -13,7 +13,7 @@ const IMAGE_WRAPPER_STYLE = {
 const IMAGE_STYLE = {
   display: 'block',
   overflow: 'hidden',
-  backfaceVisibility: 'hidden',
+  backfaceVisibility: 'hidden' as const,
   objectFit: 'cover' as const,
   width: '770px',
   height: '748.5px',

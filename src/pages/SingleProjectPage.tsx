@@ -1,8 +1,12 @@
+import { useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 import Subscribe from '../components/Subscribe';
+import { buildProjectCards, buildProjectDetailContent } from '../data/contentCatalog';
 import { useI18n } from '../i18n/I18nProvider';
 
 export default function SingleProjectPage() {
-  const { t } = useI18n();
+  const { t, language } = useI18n();
+  const { projectId } = useParams<{ projectId?: string }>();
   const company = t<{ email: string; emailAlt: string; phone: string; phoneAlt: string }>('company', {
     email: '',
     emailAlt: '',
@@ -10,39 +14,16 @@ export default function SingleProjectPage() {
     phoneAlt: '',
   });
   const phoneHref = company.phone.replace(/[^\d+]/g, '');
-  const singleProject = t<{
-    title: string;
-    paragraphs: string[];
-    solutionTitle: string;
-    solutionText: string;
-    checklist: string[];
-    processTitle: string;
-    processText: string;
-    closingText: string;
-    projectInfoTitle: string;
-    ratingLabel: string;
-    info: { label: string; value: string }[];
-    freeConsultation: string;
-    emailSupport: string;
-    scheduleProject: string;
-    schedulePlaceholders: { name: string; email: string; message: string };
-  }>('singleProject', {
-    title: '',
-    paragraphs: [],
-    solutionTitle: '',
-    solutionText: '',
-    checklist: [],
-    processTitle: '',
-    processText: '',
-    closingText: '',
-    projectInfoTitle: '',
-    ratingLabel: '',
-    info: [],
-    freeConsultation: '',
-    emailSupport: '',
-    scheduleProject: '',
-    schedulePlaceholders: { name: '', email: '', message: '' },
-  });
+  const projectItems = t<{ title: string; category: string }[]>('projectsPage.items', []);
+  const projects = useMemo(() => buildProjectCards(projectItems), [projectItems]);
+  const activeProject = projects.find((project) => project.id === projectId) ?? projects[0];
+
+  if (!activeProject) {
+    return null;
+  }
+
+  const activeIndex = projects.findIndex((project) => project.id === activeProject.id);
+  const projectDetails = buildProjectDetailContent(activeProject, language, activeIndex >= 0 ? activeIndex : 0);
 
   return (
     <>
@@ -60,21 +41,21 @@ export default function SingleProjectPage() {
                       <img src="/assets/images/before.jpg" alt="before" />
                     </div>
                     <div className="ba-handle" id="ba-handle">
-                      <div className="icon">⇆</div>
+                      <div className="icon">?</div>
                     </div>
                   </div>
                 </div>
 
-                <h2>{singleProject.title}</h2>
-                {singleProject.paragraphs.map((paragraph) => (
+                <h2>{projectDetails.heading}</h2>
+                {projectDetails.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
 
-                <h3>{singleProject.solutionTitle}</h3>
-                <p>{singleProject.solutionText}</p>
+                <h3>{projectDetails.solutionTitle}</h3>
+                <p>{projectDetails.solutionText}</p>
 
                 <ul className="p-0 mb-0 mt-4 list-unstyled check-list">
-                  {singleProject.checklist.map((item) => (
+                  {projectDetails.checklist.map((item) => (
                     <li className="d-flex align-items-center gap-10" key={item}>
                       <i className="ti ti-circle-check text-primary fs-20"></i>
                       <span className="text-secondary fw-medium">{item}</span>
@@ -82,13 +63,13 @@ export default function SingleProjectPage() {
                   ))}
                 </ul>
 
-                <h4>{singleProject.processTitle}</h4>
-                <p>{singleProject.processText}</p>
+                <h4>{projectDetails.processTitle}</h4>
+                <p>{projectDetails.processText}</p>
 
                 <div className="position-relative z-1 pt-2 mb-4">
-                  <img src="/assets/images/project12.jpg" alt="project" />
+                  <img src={activeProject.image} alt={activeProject.title} />
                   <a
-                    href="https://youtu.be/78GehqOuq-A?si=WSjyu8eJ-TPiQ5QP"
+                    href="https://www.youtube.com/watch?v=78GehqOuq-A"
                     className="video-btn mx-auto position-absolute top-50 start-50 translate-middle"
                     data-fslightbox="2"
                   >
@@ -96,7 +77,7 @@ export default function SingleProjectPage() {
                   </a>
                 </div>
 
-                <p>{singleProject.closingText}</p>
+                <p>{projectDetails.closingText}</p>
               </div>
             </div>
             <div className="col-xl-4">
@@ -112,9 +93,9 @@ export default function SingleProjectPage() {
                 </div>
 
                 <div className="sidebar-widget bg-gray2">
-                  <h3>{singleProject.projectInfoTitle}</h3>
+                  <h3>{projectDetails.projectInfoTitle}</h3>
                   <ul className="category-list p-0 m-0 list-unstyled">
-                    {singleProject.info.map((item) => (
+                    {projectDetails.info.map((item) => (
                       <li
                         className="d-flex flex-wrap gap-10 justify-content-between align-items-center"
                         key={item.label}
@@ -124,7 +105,7 @@ export default function SingleProjectPage() {
                       </li>
                     ))}
                     <li className="d-flex flex-wrap gap-10 justify-content-between align-items-center">
-                      <span className="text-secondary fw-medium">{singleProject.ratingLabel}</span>
+                      <span className="text-secondary fw-medium">{projectDetails.ratingLabel}</span>
                       <div className="d-flex">
                         {Array.from({ length: 5 }).map((_, index) => (
                           <i className="ti ti-star-filled fs-18 text-warning" key={index}></i>
@@ -144,7 +125,7 @@ export default function SingleProjectPage() {
                       </div>
                       <div className="flex-grow-1">
                         <span className="d-block text-white fs-22 fw-bold mb-2">
-                          {singleProject.freeConsultation}
+                          {projectDetails.freeConsultation}
                         </span>
                         <a
                           href={`tel:${phoneHref}`}
@@ -157,11 +138,11 @@ export default function SingleProjectPage() {
                     <div className="d-flex align-items-center gap-25 mb-0">
                       <div className="flex-shrink-0">
                         <div className="icon rounded-3">
-                          <img src="/assets/images/email2.svg" alt="phone" />
+                          <img src="/assets/images/email2.svg" alt="email" />
                         </div>
                       </div>
                       <div className="flex-grow-1">
-                        <span className="d-block text-white fs-22 fw-bold mb-2">{singleProject.emailSupport}</span>
+                        <span className="d-block text-white fs-22 fw-bold mb-2">{projectDetails.emailSupport}</span>
                         <a
                           href={`mailto:${company.email}`}
                           className="d-block text-white text-decoration-none"
@@ -174,18 +155,18 @@ export default function SingleProjectPage() {
                 </div>
 
                 <div className="sidebar-widget bg-gray2">
-                  <h3>{singleProject.scheduleProject}</h3>
+                  <h3>{projectDetails.scheduleProject}</h3>
                   <form>
                     <div className="mb-4">
-                      <input type="text" className="form-control" placeholder={singleProject.schedulePlaceholders.name} />
+                      <input type="text" className="form-control" placeholder={projectDetails.schedulePlaceholders.name} />
                     </div>
                     <div className="mb-4">
-                      <input type="email" className="form-control" placeholder={singleProject.schedulePlaceholders.email} />
+                      <input type="email" className="form-control" placeholder={projectDetails.schedulePlaceholders.email} />
                     </div>
                     <div className="mb-4">
                       <textarea
                         className="form-control"
-                        placeholder={singleProject.schedulePlaceholders.message}
+                        placeholder={projectDetails.schedulePlaceholders.message}
                         rows={5}
                       ></textarea>
                     </div>

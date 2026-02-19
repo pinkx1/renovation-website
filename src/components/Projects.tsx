@@ -1,14 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useI18n } from '../i18n/I18nProvider';
+import { buildProjectCards } from '../data/contentCatalog';
 
 export default function Projects() {
   const { t } = useI18n();
   const items = t<{ title: string; category: string }[]>('projectsHome.items', []);
-  const projects = [
-    { image: '/assets/images/project4.jpg', ...items[0] },
-    { image: '/assets/images/project5.jpg', ...items[1] },
-    { image: '/assets/images/project6.jpg', ...items[2] },
-  ].filter((item) => item.title);
+  const projects = buildProjectCards(items);
   const projectSlides = [...projects, ...projects];
 
   return (
@@ -17,7 +14,6 @@ export default function Projects() {
         <div className="container mw-1690">
           <div className="d-flex flex-wrap gap-20 justify-content-between align-items-center mb-50 mt-0">
             <div>
-              <span className="top-title">{t('projectsHome.topTitle')}</span>
               <h2 className="main-title mw-720">
                 {t('projectsHome.title')}
               </h2>
@@ -46,7 +42,7 @@ export default function Projects() {
               {projectSlides.map((project, index) => (
                 <div className="swiper-slide" key={`${project.title}-${index}`}>
                   <Link
-                    to="/single-project"
+                    to={`/projects/${project.id}`}
                     className="projects-single-item-two d-block text-decoration-none"
                   >
                     <img src={project.image} alt="project" />

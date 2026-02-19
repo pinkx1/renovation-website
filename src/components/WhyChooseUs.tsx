@@ -1,24 +1,28 @@
 import { useI18n } from '../i18n/I18nProvider';
 
 const IMAGE_WRAPPER_STYLE = {
-  position: 'relative',
+  position: 'relative' as const,
   width: '390px',
   overflow: 'hidden',
   borderRadius: '15px',
-  isolation: 'isolate',
+  isolation: 'isolate' as const,
   height: '420px',
 };
 
 const IMAGE_STYLE = {
   display: 'block',
   overflow: 'hidden',
-  backfaceVisibility: 'hidden',
-  objectFit: 'cover',
+  backfaceVisibility: 'hidden' as const,
+  objectFit: 'cover' as const,
   width: '390px',
   height: '630px',
 };
 
-export default function WhyChooseUs() {
+type WhyChooseUsProps = {
+  showTopTitle?: boolean;
+};
+
+export default function WhyChooseUs({ showTopTitle = true }: WhyChooseUsProps) {
   const { t } = useI18n();
   const items = t<{ title: string; description: string }[]>('whyChoose.items', []);
   const progress = t<{ label: string; percent: number }[]>('whyChoose.progress', []);
@@ -40,7 +44,7 @@ export default function WhyChooseUs() {
       <div className="why-choose-us-area ptb-120">
         <div className="container mw-1690">
           <div className="mb-50 mt-0 text-center">
-            <span className="top-title">{t('whyChoose.topTitle')}</span>
+            {showTopTitle ? <span className="top-title">{t('whyChoose.topTitle')}</span> : null}
             <h2 className="main-title mx-auto mw-550">
               {t('whyChoose.title')}
             </h2>

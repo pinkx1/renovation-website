@@ -7,7 +7,12 @@ const TEAM_SOCIALS = [
   { href: 'https://www.linkedin.com/', icon: 'ti ti-brand-linkedin', label: 'Linkedin' },
 ];
 
-export default function Team() {
+type TeamProps = {
+  showTopTitle?: boolean;
+  titleOverride?: string;
+};
+
+export default function Team({ showTopTitle = true, titleOverride }: TeamProps) {
   const { t } = useI18n();
   const members = t<{ name: string; role: string }[]>('teamHome.members', []);
   const teamMembers = [
@@ -23,9 +28,9 @@ export default function Team() {
       <div className="team-area ptb-120">
         <div className="container mw-1690">
           <div className="mb-50 mt-0 text-center">
-            <span className="top-title">{t('teamHome.topTitle')}</span>
+            {showTopTitle ? <span className="top-title">{t('teamHome.topTitle')}</span> : null}
             <h2 className="main-title mx-auto mw-550">
-              {t('teamHome.title')}
+              {titleOverride ?? t('teamHome.title')}
             </h2>
           </div>
           <div className="swiper team-slide">

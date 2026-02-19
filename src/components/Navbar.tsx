@@ -71,9 +71,6 @@ export default function Navbar() {
                             {company.phone}
                           </span>
                       </a>
-                      <button className="bg-transparent border-0 p-0 button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                          <img src="/assets/images/icon-search.svg" alt="icon-search" />
-                      </button>
                   </div>
                   <button
                     type="button"

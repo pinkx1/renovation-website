@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useI18n } from '../i18n/I18nProvider';
 
 export default function GetToKnowUs() {
-  const { t } = useI18n();
+  const { t, language } = useI18n();
   const list = t<string[]>('getToKnow.list', []);
   const accordionItems = t<
     {
@@ -11,26 +11,13 @@ export default function GetToKnowUs() {
       list?: { title: string; text: string }[];
     }[]
   >('getToKnow.accordion', []);
-  const marqueeTexts = t<string[]>('getToKnow.marquee', []);
-
-  const marqueeNodes = marqueeTexts.flatMap((text, index) => {
-    const isLast = index === marqueeTexts.length - 1;
-    const nodes = [
-      <span className="monogram text-secondary" key={`text-${text}-${index}`}>
-        {text}
-      </span>,
-    ];
-
-    if (!isLast) {
-      nodes.push(
-        <span className="monogram" key={`img-${text}-${index}`}>
-          <img src="/assets/images/monogram-img2.png" alt="monogram-img" />
-        </span>
-      );
-    }
-
-    return nodes;
-  });
+  const russianAccordionStyle =
+    language === 'ru'
+      ? {
+          fontFamily: '"Inter", "Work Sans", sans-serif',
+          letterSpacing: '0',
+        }
+      : undefined;
 
   return (
     <>
@@ -39,7 +26,6 @@ export default function GetToKnowUs() {
               <div className="row g-4">
                   <div className="col-xl-4 col-lg-6">
                       <div className="mb-50 mt-0">
-                          <span className="top-title">{t('getToKnow.topTitle')}</span>
                           <h2 className="main-title mw-720">{t('getToKnow.title')}</h2>
                           <p>{t('getToKnow.description')}</p>
                       </div>
@@ -58,15 +44,6 @@ export default function GetToKnowUs() {
                                   <img src="/assets/images/icon-right-arrow.svg" alt="icon-right-arrow" />
                               </div>
                           </Link>
-                          <div className="d-flex align-items-center get-author">
-                              <div className="flex-shrink-0">
-                                  <img src="/assets/images/user4.jpg" className="rounded-circle" alt="user" />
-                              </div>
-                              <div className="flex-grow-1">
-                                  <h3 className="mb-1">{t('getToKnow.authorName')}</h3>
-                                  <span>{t('getToKnow.authorRole')}</span>
-                              </div>
-                          </div>
                       </div>
                   </div>
                   <div className="col-xl-4 col-lg-6">
@@ -89,6 +66,7 @@ export default function GetToKnowUs() {
                                   data-bs-target={`#${itemId}`}
                                   aria-expanded={isActive}
                                   aria-controls={itemId}
+                                  style={russianAccordionStyle}
                                 >
                                   {item.title}
                                 </button>
@@ -98,7 +76,7 @@ export default function GetToKnowUs() {
                                 className={`accordion-collapse collapse${isActive ? ' show' : ''}`}
                                 data-bs-parent="#accordionExample"
                               >
-                                <div className="accordion-body">
+                                <div className="accordion-body" style={russianAccordionStyle}>
                                   {item.body ? <p>{item.body}</p> : null}
                                   {item.list && (
                                     <ol>
@@ -122,11 +100,6 @@ export default function GetToKnowUs() {
               </div>
           </div>
       </div>
-    <div className="marquee-wrapper monogram-wrap ptb-120">
-        <div className="marquee speed-300 style-two">
-            {marqueeNodes}
-        </div>
-    </div>
     </>
   );
 }

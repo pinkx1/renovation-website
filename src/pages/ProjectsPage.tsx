@@ -1,20 +1,25 @@
 import { Link } from 'react-router-dom';
 import Subscribe from '../components/Subscribe';
 import { useI18n } from '../i18n/I18nProvider';
+import { buildProjectCards } from '../data/contentCatalog';
 
 export default function ProjectsPage() {
   const { t } = useI18n();
   const items = t<{ title: string; category: string }[]>('projectsPage.items', []);
-  const projects = [
-    { image: '/assets/images/project4.jpg', columnClass: 'col-xl-4 col-md-6', ...items[0] },
-    { image: '/assets/images/project5.jpg', columnClass: 'col-xl-4 col-md-6', ...items[1] },
-    { image: '/assets/images/project6.jpg', columnClass: 'col-xl-4 col-md-6', ...items[2] },
-    { image: '/assets/images/project7.jpg', columnClass: 'col-md-6', ...items[3] },
-    { image: '/assets/images/project8.jpg', columnClass: 'col-md-6', ...items[4] },
-    { image: '/assets/images/project9.jpg', columnClass: 'col-xl-4 col-md-6', ...items[5] },
-    { image: '/assets/images/project10.jpg', columnClass: 'col-xl-4 col-md-6', ...items[6] },
-    { image: '/assets/images/project11.jpg', columnClass: 'col-xl-4 col-md-6', ...items[7] },
-  ].filter((project) => project.title);
+  const columns = [
+    'col-xl-4 col-md-6',
+    'col-xl-4 col-md-6',
+    'col-xl-4 col-md-6',
+    'col-md-6',
+    'col-md-6',
+    'col-xl-4 col-md-6',
+    'col-xl-4 col-md-6',
+    'col-xl-4 col-md-6',
+  ];
+  const projects = buildProjectCards(items).map((project, index) => ({
+    ...project,
+    columnClass: columns[index] ?? 'col-xl-4 col-md-6',
+  }));
 
   return (
     <>
@@ -24,7 +29,7 @@ export default function ProjectsPage() {
             {projects.map((project) => (
               <div className={project.columnClass} key={`${project.title}-${project.image}`}>
                 <Link
-                  to="/single-project"
+                  to={`/projects/${project.id}`}
                   className="projects-single-item-two d-block text-decoration-none"
                 >
                   <img src={project.image} alt="project" />

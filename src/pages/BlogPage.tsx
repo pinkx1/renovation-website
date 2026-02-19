@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Subscribe from '../components/Subscribe';
 import { useI18n } from '../i18n/I18nProvider';
+import { buildBlogCards } from '../data/contentCatalog';
 
 export default function BlogPage() {
   const { t } = useI18n();
@@ -10,14 +11,7 @@ export default function BlogPage() {
   const popularPosts = t<{ date: string; title: string }[]>('blogPage.popularPosts', []);
   const categories = t<string[]>('blogPage.categories', []);
   const tags = t<string[]>('blogPage.tags', []);
-  const blogPosts = [
-    { image: '/assets/images/blog5.jpg', ...posts[0] },
-    { image: '/assets/images/blog6.jpg', ...posts[1] },
-    { image: '/assets/images/blog7.jpg', ...posts[2] },
-    { image: '/assets/images/blog12.jpg', ...posts[3] },
-    { image: '/assets/images/blog13.jpg', ...posts[4] },
-    { image: '/assets/images/blog14.jpg', ...posts[5] },
-  ].filter((post) => post.title);
+  const blogPosts = buildBlogCards(posts);
 
   return (
     <>
@@ -29,7 +23,7 @@ export default function BlogPage() {
                 {blogPosts.map((post) => (
                   <div className="col-lg-6" key={`${post.title}-${post.image}`}>
                     <Link
-                      to="/single-blog"
+                      to={`/blog/${post.id}`}
                       className="blog-single-item style-two d-block text-decoration-none bg-transparent"
                     >
                       <div className="blog-imgs">
@@ -93,17 +87,25 @@ export default function BlogPage() {
                 <div className="sidebar-widget bg-gray2">
                   <h3>{t('common.popularPost')}</h3>
                   <div className="popular-post-list">
-                    {popularPosts.map((post, index) => (
-                      <Link to="/single-blog" className="d-sm-flex align-items-center item" key={post.title}>
-                        <div className="flex-shrink-0 mb-3 mb-sm-0">
-                          <img src={`/assets/images/blog${index + 11}.jpg`} className="object-fit-cover" alt="blog" />
-                        </div>
-                        <div className="flex-grow-1">
-                          <span>{post.date}</span>
-                          <h4>{post.title}</h4>
-                        </div>
-                      </Link>
-                    ))}
+                    {popularPosts.map((post, index) => {
+                      const linkedPost = blogPosts[index] ?? blogPosts[0];
+
+                      return (
+                        <Link
+                          to={linkedPost ? `/blog/${linkedPost.id}` : '/blog'}
+                          className="d-sm-flex align-items-center item"
+                          key={post.title}
+                        >
+                          <div className="flex-shrink-0 mb-3 mb-sm-0">
+                            <img src={`/assets/images/blog${index + 11}.jpg`} className="object-fit-cover" alt="blog" />
+                          </div>
+                          <div className="flex-grow-1">
+                            <span>{post.date}</span>
+                            <h4>{post.title}</h4>
+                          </div>
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
 

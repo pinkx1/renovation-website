@@ -19227,4 +19227,140 @@ Page-navigation Area Style
   }
 }
 
+.request-quote-modal .modal-content {
+  box-shadow: 0 24px 70px rgba(22, 10, 5, 0.22);
+}
+
+.request-quote-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 4;
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  border-radius: 50%;
+}
+
+.request-quote-intro {
+  background: linear-gradient(150deg, #160A05 0%, #3A1D10 100%);
+  color: #ffffff;
+  padding: 52px 42px;
+}
+
+.request-quote-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #FFD8C5;
+  margin-bottom: 14px;
+}
+
+.request-quote-intro h3 {
+  color: #ffffff;
+  font-size: 34px;
+  margin-bottom: 14px;
+}
+
+.request-quote-intro p {
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 26px;
+}
+
+.request-quote-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.request-quote-list li:last-child {
+  margin-bottom: 0;
+}
+
+.request-quote-list li i {
+  color: #FF6726;
+  font-size: 20px;
+  margin-top: 1px;
+}
+
+.request-quote-form-wrap {
+  padding: 52px 42px;
+  background-color: #ffffff;
+}
+
+.request-quote-form-wrap .form-control,
+.request-quote-form-wrap .form-select {
+  border: 1px solid rgba(22, 10, 5, 0.14);
+  border-radius: 12px;
+  min-height: 54px;
+}
+
+.request-quote-form-wrap textarea.form-control {
+  min-height: 130px;
+}
+
+html[lang="ru"] .request-quote-intro h3,
+html[lang="ru"] .request-quote-form-wrap h4 {
+  text-transform: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .request-quote-intro,
+  .request-quote-form-wrap {
+    padding: 32px 22px;
+  }
+
+  .request-quote-intro h3 {
+    font-size: 28px;
+  }
+
+  .request-quote-close {
+    top: 12px;
+    right: 12px;
+  }
+}
+
+.home-page {
+  --home-section-space: 96px;
+  --home-heading-space: 56px;
+}
+
+.home-page .what-we-do-area,
+.home-page .get-to-know-us-area,
+.home-page .services-area-two,
+.home-page .projects-area,
+.home-page .why-choose-us-area,
+.home-page .testimonial-area-two,
+.home-page .team-area,
+.home-page .contact-us-area,
+.home-page .blog-area {
+  padding-top: var(--home-section-space) !important;
+  padding-bottom: var(--home-section-space) !important;
+}
+
+.home-page .consultation-area {
+  padding-top: var(--home-section-space);
+  padding-bottom: var(--home-section-space);
+}
+
+.home-page .mb-50.mt-0.text-center,
+.home-page .d-flex.flex-wrap.gap-20.justify-content-between.align-items-center.mb-50.mt-0,
+.home-page .contact-us-content .mb-50,
+.home-page .blog-area .text-center.mb-50 {
+  margin-top: 0 !important;
+  margin-bottom: var(--home-heading-space) !important;
+}
+
+@media only screen and (max-width: 991px) {
+  .home-page {
+    --home-section-space: 64px;
+    --home-heading-space: 36px;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */

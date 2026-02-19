@@ -1,51 +1,27 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useMemo } from 'react';
 import Subscribe from '../components/Subscribe';
+import { buildBlogCards, buildBlogDetailContent } from '../data/contentCatalog';
 import { useI18n } from '../i18n/I18nProvider';
 
 export default function SingleBlogPage() {
-  const { t } = useI18n();
+  const { t, language } = useI18n();
+  const { postId } = useParams<{ postId?: string }>();
+  const posts = t<
+    { tag: string; date: string; comments: string; title: string; excerpt: string }[]
+  >('blogPage.posts', []);
+  const blogPosts = useMemo(() => buildBlogCards(posts), [posts]);
+  const activePost = blogPosts.find((post) => post.id === postId) ?? blogPosts[0];
+
+  if (!activePost) {
+    return null;
+  }
+
+  const postIndex = blogPosts.findIndex((post) => post.id === activePost.id);
+  const details = buildBlogDetailContent(activePost, language, postIndex >= 0 ? postIndex : 0);
   const popularPosts = t<{ date: string; title: string }[]>('blogPage.popularPosts', []);
   const categories = t<string[]>('blogPage.categories', []);
   const tags = t<string[]>('blogPage.tags', []);
-  const singleBlog = t<{
-    tag: string;
-    date: string;
-    comments: string;
-    title: string;
-    paragraphs: string[];
-    quote: string;
-    subTitle: string;
-    subParagraphs: string[];
-    tags: string[];
-    authorName: string;
-    authorBio: string;
-    commentTitle: string;
-    commentName: string;
-    commentMeta: string;
-    commentText: string;
-    replyTitle: string;
-    replyNote: string;
-    replyPlaceholders: { name: string; email: string; comment: string };
-  }>('singleBlog', {
-    tag: '',
-    date: '',
-    comments: '',
-    title: '',
-    paragraphs: [],
-    quote: '',
-    subTitle: '',
-    subParagraphs: [],
-    tags: [],
-    authorName: '',
-    authorBio: '',
-    commentTitle: '',
-    commentName: '',
-    commentMeta: '',
-    commentText: '',
-    replyTitle: '',
-    replyNote: '',
-    replyPlaceholders: { name: '', email: '', comment: '' },
-  });
 
   return (
     <>
@@ -55,15 +31,15 @@ export default function SingleBlogPage() {
             <div className="col-xl-8">
               <div className="blog-details-content">
                 <div className="blog-details-img">
-                  <img src="/assets/images/blog15.jpg" alt="blog" />
-                  <span className="tag">{singleBlog.tag}</span>
+                  <img src={activePost.image} alt={activePost.title} />
+                  <span className="tag">{details.tag}</span>
                 </div>
 
                 <ul className="p-0 mt-0 list-unstyled d-flex align-items-center info">
                   <li>
                     <span className="d-flex align-items-center gap-10 text-decoration-none">
                       <i className="ti ti-calendar-week fs-18"></i>
-                      <span>{singleBlog.date}</span>
+                      <span>{details.date}</span>
                     </span>
                   </li>
                   <li>
@@ -72,29 +48,29 @@ export default function SingleBlogPage() {
                       className="d-flex align-items-center gap-10 text-decoration-none"
                     >
                       <i className="ti ti-message fs-18"></i>
-                      <span>{singleBlog.comments}</span>
+                      <span>{details.comments}</span>
                     </a>
                   </li>
                 </ul>
 
-                <h2>{singleBlog.title}</h2>
-                {singleBlog.paragraphs.map((paragraph) => (
+                <h2>{details.title}</h2>
+                {details.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
 
                 <blockquote>
                   <div className="d-sm-flex align-items-center gap-30">
                     <div className="flex-shrink-0">
-                      <img src="/assets/images/quat.svg" alt="quat" />
+                      <img src="/assets/images/quat.svg" alt="quote" />
                     </div>
                     <div className="flex-grow-1">
-                      <p>{singleBlog.quote}</p>
+                      <p>{details.quote}</p>
                     </div>
                   </div>
                 </blockquote>
 
-                <h3>{singleBlog.subTitle}</h3>
-                {singleBlog.subParagraphs.map((paragraph) => (
+                <h3>{details.subTitle}</h3>
+                {details.subParagraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
 
@@ -103,9 +79,9 @@ export default function SingleBlogPage() {
                     <li>
                       <i className="ti ti-tag-filled"></i>
                     </li>
-                    {singleBlog.tags.map((tag) => (
+                    {details.tags.map((tag) => (
                       <li key={tag}>
-                        <Link to="/tags" className="text-decoration-none">
+                        <Link to="/blog" className="text-decoration-none">
                           {tag}
                         </Link>
                       </li>
@@ -140,12 +116,12 @@ export default function SingleBlogPage() {
 
                 <div className="d-sm-flex author-info bg-gray2">
                   <div className="flex-shrink-0 mb-3 mb-sm-0">
-                    <img src="/assets/images/user21.jpg" className="rounded-circle" alt="user" />
+                    <img src="/assets/images/user21.jpg" className="rounded-circle" alt={details.authorName} />
                   </div>
 
                   <div className="flex-grow-1">
-                    <h4>{singleBlog.authorName}</h4>
-                    <p>{singleBlog.authorBio}</p>
+                    <h4>{details.authorName}</h4>
+                    <p>{details.authorBio}</p>
 
                     <div className="d-flex align-items-center social-link">
                       <a href="https://www.facebook.com/" className="text-decoration-none" target="_blank" rel="noreferrer">
@@ -164,37 +140,37 @@ export default function SingleBlogPage() {
                   </div>
                 </div>
 
-                <h3 id="comment">{singleBlog.commentTitle}</h3>
+                <h3 id="comment">{details.commentTitle}</h3>
 
                 <div className="d-sm-flex comment-info position-relative z-1 bg-gray2">
                   <div className="flex-shrink-0 mb-3 mb-sm-0">
-                    <img src="/assets/images/team1.jpg" alt="author" />
+                    <img src="/assets/images/team1.jpg" alt={details.commentName} />
                   </div>
 
                   <div className="flex-grow-1">
-                    <h4>{singleBlog.commentName}</h4>
-                    <span>{singleBlog.commentMeta}</span>
-                    <p className="m-0">{singleBlog.commentText}</p>
+                    <h4>{details.commentName}</h4>
+                    <span>{details.commentMeta}</span>
+                    <p className="m-0">{details.commentText}</p>
 
-                    <Link to="/single-blog" className="reply">
+                    <Link to={`/blog/${activePost.id}`} className="reply">
                       {t('common.reply')}
                     </Link>
                   </div>
                 </div>
 
                 <form className="comment-form bg-gray2">
-                  <h3>{singleBlog.replyTitle}</h3>
-                  <p>{singleBlog.replyNote}</p>
+                  <h3>{details.replyTitle}</h3>
+                  <p>{details.replyNote}</p>
 
                   <div className="row g-4">
                     <div className="col-lg-6">
-                      <input type="text" className="form-control" placeholder={singleBlog.replyPlaceholders.name} />
+                      <input type="text" className="form-control" placeholder={details.replyPlaceholders.name} />
                     </div>
                     <div className="col-lg-6">
-                      <input type="email" className="form-control" placeholder={singleBlog.replyPlaceholders.email} />
+                      <input type="email" className="form-control" placeholder={details.replyPlaceholders.email} />
                     </div>
                     <div className="col-12">
-                      <textarea className="form-control" rows={5} placeholder={singleBlog.replyPlaceholders.comment}></textarea>
+                      <textarea className="form-control" rows={5} placeholder={details.replyPlaceholders.comment}></textarea>
                     </div>
                     <div className="col-12">
                       <button type="submit" className="default-btn border-0">
@@ -223,17 +199,21 @@ export default function SingleBlogPage() {
                 <div className="sidebar-widget bg-gray2">
                   <h3>{t('common.popularPost')}</h3>
                   <div className="popular-post-list">
-                    {popularPosts.map((post, index) => (
-                      <Link to="/single-blog" className="d-sm-flex align-items-center item" key={post.title}>
-                        <div className="flex-shrink-0 mb-3 mb-sm-0">
-                          <img src={`/assets/images/blog${index + 11}.jpg`} className="object-fit-cover" alt="blog" />
-                        </div>
-                        <div className="flex-grow-1">
-                          <span>{post.date}</span>
-                          <h4>{post.title}</h4>
-                        </div>
-                      </Link>
-                    ))}
+                    {popularPosts.map((post, index) => {
+                      const linkedPost = blogPosts[index] ?? activePost;
+
+                      return (
+                        <Link to={`/blog/${linkedPost.id}`} className="d-sm-flex align-items-center item" key={post.title}>
+                          <div className="flex-shrink-0 mb-3 mb-sm-0">
+                            <img src={linkedPost.image} className="object-fit-cover" alt={linkedPost.title} />
+                          </div>
+                          <div className="flex-grow-1">
+                            <span>{post.date}</span>
+                            <h4>{post.title}</h4>
+                          </div>
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -242,8 +222,8 @@ export default function SingleBlogPage() {
                   <ul className="category-list p-0 m-0 list-unstyled">
                     {categories.map((category) => (
                       <li key={category}>
-                      <Link
-                          to="/categories"
+                        <Link
+                          to="/blog"
                           className="d-flex justify-content-between align-items-center text-decoration-none"
                         >
                           <span>{category}</span>
@@ -259,7 +239,7 @@ export default function SingleBlogPage() {
                   <ul className="p-0 m-0 list-unstyled d-flex flex-wrap tags">
                     {tags.map((tag) => (
                       <li key={tag}>
-                        <Link to="/tags">{tag}</Link>
+                        <Link to="/blog">{tag}</Link>
                       </li>
                     ))}
                   </ul>

@@ -16,20 +16,24 @@ import SingleProjectPage from './pages/SingleProjectPage';
 import SingleServicePage from './pages/SingleServicePage';
 import TermsConditionsPage from './pages/TermsConditionsPage';
 import TestimonialsPage from './pages/TestimonialsPage';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:postId" element={<SingleBlogPage />} />
           <Route path="/contact-us" element={<ContactUsPage />} />
           <Route path="/faqs" element={<FaqsPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:projectId" element={<SingleProjectPage />} />
           <Route path="/request-a-quote" element={<RequestQuotePage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/single-blog" element={<SingleBlogPage />} />

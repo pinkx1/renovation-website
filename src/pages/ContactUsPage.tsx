@@ -1,4 +1,3 @@
-import Subscribe from '../components/Subscribe';
 import { useI18n } from '../i18n/I18nProvider';
 
 const IMAGE_WRAPPER_STYLE = {
@@ -114,7 +113,6 @@ export default function ContactUsPage() {
       <div className="contact-us-area-three ptb-120">
         <div className="container mw-1690">
           <div className="mb-50 text-center">
-            <span className="top-title">{t('contactPage.getInTouchTop')}</span>
             <h2 className="main-title mx-auto">{t('contactPage.getInTouchTitle')}</h2>
           </div>
 
@@ -203,7 +201,6 @@ export default function ContactUsPage() {
           </div>
         </div>
       </div>
-      <Subscribe />
     </>
   );
 }

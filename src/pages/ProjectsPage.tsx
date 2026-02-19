@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Subscribe from '../components/Subscribe';
 import { useI18n } from '../i18n/I18nProvider';
 import { buildProjectCards } from '../data/contentCatalog';
 
@@ -48,7 +47,6 @@ export default function ProjectsPage() {
           </div>
         </div>
       </div>
-      <Subscribe />
     </>
   );
 }

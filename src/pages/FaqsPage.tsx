@@ -1,4 +1,3 @@
-import Subscribe from '../components/Subscribe';
 import { useI18n } from '../i18n/I18nProvider';
 
 const IMAGE_WRAPPER_STYLE = {
@@ -120,8 +119,8 @@ export default function FaqsPage() {
       </div>
       <div className="contact-us-area pb-120">
         <div className="container mw-1690">
-          <div className="mb-50 text-center">
-            <h2 className="main-title mx-auto">{t('faqsPage.formHeading')}</h2>
+          <div className="mb-50 text-start">
+            <h2 className="main-title faq-form-title">{t('faqsPage.formHeading')}</h2>
           </div>
 
           <div className="contact-us-from bg-gray2 mx-0">
@@ -169,7 +168,6 @@ export default function FaqsPage() {
           </div>
         </div>
       </div>
-      <Subscribe />
     </>
   );
 }

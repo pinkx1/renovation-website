@@ -19058,6 +19058,74 @@ Page-navigation Area Style
   white-space: nowrap;
 }
 
+.services-title {
+  white-space: nowrap;
+}
+
+.get-to-know-us-area.pt-120 {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.projects-area.pt-120 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.why-choose-title {
+  white-space: nowrap;
+}
+
+.blog-title {
+  white-space: nowrap;
+}
+
+.faq-form-title {
+  white-space: nowrap;
+}
+
+.request-quote-modal-dialog .modal-content {
+  background-color: #fff;
+}
+
+.request-quote-modal-dialog .modal-body {
+  padding: 16px;
+}
+
+.request-quote-form {
+  padding: 24px;
+  background-color: #fff;
+  width: 100%;
+}
+
+.request-quote-modal-dialog {
+  max-width: 560px;
+}
+
+.request-quote-form .form-control,
+.request-quote-form .form-select {
+  height: 40px;
+  font-size: 12px;
+}
+
+.request-quote-form textarea.form-control {
+  height: auto;
+}
+
+.request-quote-form .main-title {
+  font-size: 24px;
+}
+
+.request-quote-form .form-control::placeholder,
+.request-quote-form .form-select::placeholder {
+  font-size: 12px;
+}
+
+.request-quote-form .mb-20 {
+  margin-bottom: 12px;
+}
+
+
 /* Max width 767px */
 @media only screen and (max-width: 767px) {
   .pricing-single-item {
